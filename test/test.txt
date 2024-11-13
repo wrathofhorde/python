@@ -1,0 +1,1630 @@
+
+INFO_CHKSTART
+
+###########################   Unix Server Security Check   #############################
+ 
+###################################   Start Time   #####################################
+Thu Jan 18 19:24:15 KST 2024
+ 
+=========================   System Information Query Start   ===========================
+ 
+###############################   Kernel Information   #################################
+Linux pv-pro-cs-was 5.4.0-99-generic #112-Ubuntu SMP Thu Feb 3 13:50:55 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+ 
+#################################   IP Information   ###################################
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 8950
+        inet 172.21.120.123  netmask 255.255.255.0  broadcast 172.21.120.255
+        ether f2:20:ef:10:8c:75  txqueuelen 1000  (Ethernet)
+        RX packets 2298895  bytes 1264019933 (1.2 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2184934  bytes 871597148 (871.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 2680834  bytes 232331791 (232.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2680834  bytes 232331791 (232.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ 
+#################################   Network Status   ###################################
+Active Internet connections (servers and established)
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:389             0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN     
+tcp        0   2080 172.21.120.123:22       172.16.1.57:64423       ESTABLISHED
+tcp6       0      0 :::22                   :::*                    LISTEN     
+tcp6       0      0 :::389                  :::*                    LISTEN     
+tcp6       0      0 :::111                  :::*                    LISTEN     
+Active UNIX domain sockets (servers and established)
+unix  2      [ ACC ]     STREAM     LISTENING     22849    /run/lvm/lvmpolld.socket
+unix  2      [ ACC ]     STREAM     LISTENING     22852    /run/rpcbind.sock
+unix  2      [ ACC ]     SEQPACKET  LISTENING     22881    /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     22866    /run/systemd/fsck.progress
+unix  2      [ ACC ]     STREAM     LISTENING     22876    /run/systemd/journal/stdout
+unix  2      [ ACC ]     STREAM     LISTENING     9883781  /run/user/0/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     9883786  /run/user/0/bus
+unix  2      [ ACC ]     STREAM     LISTENING     9883787  /run/user/0/gnupg/S.dirmngr
+unix  2      [ ACC ]     STREAM     LISTENING     9883788  /run/user/0/gnupg/S.gpg-agent.browser
+unix  2      [ ACC ]     STREAM     LISTENING     9883789  /run/user/0/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     646908   @/org/kernel/linux/storage/multipathd
+unix  2      [ ACC ]     STREAM     LISTENING     9883790  /run/user/0/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     9883791  /run/user/0/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     9883792  /run/user/0/pk-debconf-socket
+unix  2      [ ACC ]     STREAM     LISTENING     9883793  /run/user/0/snapd-session-agent.socket
+unix  2      [ ACC ]     STREAM     LISTENING     23129    /run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     23132    /run/uuidd/request
+unix  2      [ ACC ]     STREAM     LISTENING     648920   /run/systemd/journal/io.systemd.journal
+unix  2      [ ACC ]     STREAM     LISTENING     22107    /run/irqbalance//irqbalance693.sock
+unix  2      [ ACC ]     STREAM     LISTENING     7304900  /var/run/slapd/ldapi
+unix  2      [ ACC ]     STREAM     LISTENING     23131    @ISCSIADM_ABSTRACT_NAMESPACE
+unix  2      [ ACC ]     STREAM     LISTENING     652416   /run/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     652419   /run/systemd/userdb/io.systemd.DynamicUser
+ 
+##############################   Routing Information   #################################
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         172.21.120.1    0.0.0.0         UG        0 0          0 eth0
+172.21.120.0    0.0.0.0         255.255.255.0   U         0 0          0 eth0
+ 
+################################   Process Status   ####################################
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0  2023 ?        00:00:56 /lib/systemd/systemd --system --deserialize 30
+root           2       0  0  2023 ?        00:00:00 [kthreadd]
+root           3       2  0  2023 ?        00:00:00 [rcu_gp]
+root           4       2  0  2023 ?        00:00:00 [rcu_par_gp]
+root           6       2  0  2023 ?        00:00:00 [kworker/0:0H-kblockd]
+root           9       2  0  2023 ?        00:00:00 [mm_percpu_wq]
+root          10       2  0  2023 ?        00:00:01 [ksoftirqd/0]
+root          11       2  0  2023 ?        00:02:09 [rcu_sched]
+root          12       2  0  2023 ?        00:00:27 [migration/0]
+root          13       2  0  2023 ?        00:00:00 [idle_inject/0]
+root          14       2  0  2023 ?        00:00:00 [cpuhp/0]
+root          15       2  0  2023 ?        00:00:00 [cpuhp/1]
+root          16       2  0  2023 ?        00:00:00 [idle_inject/1]
+root          17       2  0  2023 ?        00:00:29 [migration/1]
+root          18       2  0  2023 ?        00:00:01 [ksoftirqd/1]
+root          20       2  0  2023 ?        00:00:00 [kworker/1:0H-kblockd]
+root          21       2  0  2023 ?        00:00:00 [cpuhp/2]
+root          22       2  0  2023 ?        00:00:00 [idle_inject/2]
+root          23       2  0  2023 ?        00:00:26 [migration/2]
+root          24       2  0  2023 ?        00:00:00 [ksoftirqd/2]
+root          26       2  0  2023 ?        00:00:00 [kworker/2:0H-kblockd]
+root          27       2  0  2023 ?        00:00:00 [cpuhp/3]
+root          28       2  0  2023 ?        00:00:00 [idle_inject/3]
+root          29       2  0  2023 ?        00:00:26 [migration/3]
+root          30       2  0  2023 ?        00:00:00 [ksoftirqd/3]
+root          32       2  0  2023 ?        00:00:00 [kworker/3:0H-kblockd]
+root          33       2  0  2023 ?        00:00:00 [cpuhp/4]
+root          34       2  0  2023 ?        00:00:00 [idle_inject/4]
+root          35       2  0  2023 ?        00:00:27 [migration/4]
+root          36       2  0  2023 ?        00:00:01 [ksoftirqd/4]
+root          38       2  0  2023 ?        00:00:00 [kworker/4:0H-kblockd]
+root          39       2  0  2023 ?        00:00:00 [cpuhp/5]
+root          40       2  0  2023 ?        00:00:00 [idle_inject/5]
+root          41       2  0  2023 ?        00:00:26 [migration/5]
+root          42       2  0  2023 ?        00:00:01 [ksoftirqd/5]
+root          44       2  0  2023 ?        00:00:00 [kworker/5:0H-kblockd]
+root          45       2  0  2023 ?        00:00:00 [cpuhp/6]
+root          46       2  0  2023 ?        00:00:00 [idle_inject/6]
+root          47       2  0  2023 ?        00:00:24 [migration/6]
+root          48       2  0  2023 ?        00:00:01 [ksoftirqd/6]
+root          50       2  0  2023 ?        00:00:00 [kworker/6:0H-kblockd]
+root          51       2  0  2023 ?        00:00:00 [cpuhp/7]
+root          52       2  0  2023 ?        00:00:00 [idle_inject/7]
+root          53       2  0  2023 ?        00:00:24 [migration/7]
+root          54       2  0  2023 ?        00:00:01 [ksoftirqd/7]
+root          56       2  0  2023 ?        00:00:00 [kworker/7:0H-kblockd]
+root          57       2  0  2023 ?        00:00:00 [kdevtmpfs]
+root          58       2  0  2023 ?        00:00:00 [netns]
+root          59       2  0  2023 ?        00:00:00 [rcu_tasks_kthre]
+root          60       2  0  2023 ?        00:00:00 [kauditd]
+root          62       2  0  2023 ?        00:00:02 [khungtaskd]
+root          63       2  0  2023 ?        00:00:00 [oom_reaper]
+root          64       2  0  2023 ?        00:00:00 [writeback]
+root          65       2  0  2023 ?        00:00:00 [kcompactd0]
+root          66       2  0  2023 ?        00:00:00 [ksmd]
+root          67       2  0  2023 ?        00:00:00 [khugepaged]
+root         114       2  0  2023 ?        00:00:00 [kintegrityd]
+root         115       2  0  2023 ?        00:00:00 [kblockd]
+root         116       2  0  2023 ?        00:00:00 [blkcg_punt_bio]
+root         117       2  0  2023 ?        00:00:00 [xen-balloon]
+root         118       2  0  2023 ?        00:00:00 [tpm_dev_wq]
+root         119       2  0  2023 ?        00:00:00 [ata_sff]
+root         120       2  0  2023 ?        00:00:00 [md]
+root         121       2  0  2023 ?        00:00:00 [edac-poller]
+root         122       2  0  2023 ?        00:00:00 [devfreq_wq]
+root         123       2  0  2023 ?        00:00:00 [watchdogd]
+root         127       2  0  2023 ?        00:00:00 [kswapd0]
+root         128       2  0  2023 ?        00:00:00 [ecryptfs-kthrea]
+root         130       2  0  2023 ?        00:00:00 [kthrotld]
+root         131       2  0  2023 ?        00:00:00 [acpi_thermal_pm]
+root         132       2  0  2023 ?        00:00:28 [xenbus]
+root         133       2  0  2023 ?        00:00:00 [xenwatch]
+root         134       2  0  2023 ?        00:00:00 [khvcd]
+root         135       2  0  2023 ?        00:00:00 [scsi_eh_0]
+root         136       2  0  2023 ?        00:00:00 [scsi_tmf_0]
+root         137       2  0  2023 ?        00:00:00 [scsi_eh_1]
+root         138       2  0  2023 ?        00:00:00 [scsi_tmf_1]
+root         140       2  0  2023 ?        00:00:00 [vfio-irqfd-clea]
+root         142       2  0  2023 ?        00:00:00 [ipv6_addrconf]
+root         152       2  0  2023 ?        00:00:00 [kstrp]
+root         156       2  0  2023 ?        00:00:02 [kworker/6:1H-kblockd]
+root         157       2  0  2023 ?        00:00:00 [kworker/u129:0]
+root         173       2  0  2023 ?        00:00:00 [charger_manager]
+root         222       2  0  2023 ?        00:00:00 [cryptd]
+root         302       2  0  2023 ?        00:00:00 [raid5wq]
+root         345       2  0  2023 ?        00:00:05 [kworker/0:1H-kblockd]
+root         346       2  0  2023 ?        00:01:21 [jbd2/xvda2-8]
+root         347       2  0  2023 ?        00:00:00 [ext4-rsv-conver]
+root         348       2  0  2023 ?        00:00:03 [kworker/3:1H-kblockd]
+root         374       2  0  2023 ?        00:00:03 [kworker/2:1H-kblockd]
+root         382       2  0  2023 ?        00:00:03 [kworker/4:1H-kblockd]
+root         386       2  0  2023 ?        00:00:03 [kworker/7:1H-kblockd]
+root         390       2  0  2023 ?        00:00:03 [kworker/5:1H-kblockd]
+root         406       2  0  2023 ?        00:00:03 [kworker/1:1H-kblockd]
+root         612       2  0  2023 ?        00:00:00 [kaluad]
+root         613       2  0  2023 ?        00:00:00 [kmpath_rdacd]
+root         614       2  0  2023 ?        00:00:00 [kmpathd]
+root         615       2  0  2023 ?        00:00:00 [kmpath_handlerd]
+root         624       2  0  2023 ?        00:00:00 [jbd2/xvdb1-8]
+root         625       2  0  2023 ?        00:00:00 [ext4-rsv-conver]
+_rpc         638       1  0  2023 ?        00:00:06 /sbin/rpcbind -f -w
+root         675       1  0  2023 ?        00:00:00 /sbin/dhclient -1 -4 -v -i -pf /run/dhclient.eth0.pid -lf /var/lib/dhcp/dhclient.eth0.leases -I -df /var/lib/dhcp/dhclient6.eth0.leases eth0
+message+     681       1  0  2023 ?        00:00:04 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         693       1  0  2023 ?        00:04:48 /usr/sbin/irqbalance --foreground
+root         699       1  0  2023 ?        00:00:08 /lib/systemd/systemd-logind
+root         817       1  0  2023 ?        01:37:16 /home1/nbpmon/agent_controller_linux/agent_python/bin/python2.7 /home1/nbpmon/agent_controller_linux/agent_updater.py
+root         826       1  0  2023 ?        00:00:08 /usr/sbin/cron -f
+_chrony      828       1  0  2023 ?        00:00:49 /usr/sbin/chronyd -F -1
+_chrony      834     828  0  2023 ?        00:00:00 /usr/sbin/chronyd -F -1
+root         837       1  0  2023 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+daemon       848       1  0  2023 ?        00:00:00 /usr/sbin/atd -f
+root         877       1  0  2023 hvc0     00:00:00 /sbin/agetty -o -p -- \u --keep-baud 115200,38400,9600 hvc0 vt220
+root         900       1  0  2023 tty1     00:00:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         919       1  0  2023 ?        00:14:20 /usr/sbin/xe-daemon -p /var/run/xe-daemon.pid
+root         924     919  0  2023 ?        00:00:00 logger -t xe-daemon -p debug
+root         971     817  0  2023 ?        04:17:54 /home1/nbpmon/agent_controller_linux/install_folders/agent_linux_fin_2037/.venv/bin/python /home1/nbpmon/agent_controller_linux/install_folders/agent_linux_fin_2037/agent.py
+root        8634       1  0  2023 ?        00:00:00 /usr/lib/upower/upowerd
+syslog    182097       1  0  2023 ?        00:00:02 /usr/sbin/rsyslogd -n -iNONE
+uuidd     183031       1  0  2023 ?        00:00:00 /usr/sbin/uuidd --socket-activation
+root      183370       1  0  2023 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+systemd+  183762       1  0  2023 ?        00:00:27 /lib/systemd/systemd-networkd
+systemd+  183771       1  0  2023 ?        00:03:22 /lib/systemd/systemd-resolved
+root      183777       1  0  2023 ?        00:00:14 /lib/systemd/systemd-journald
+root      188400       1  0  2023 ?        00:00:10 /lib/systemd/systemd-udevd
+root      188753       1  0  2023 ?        00:01:21 /usr/lib/accountsservice/accounts-daemon
+root      189124       1  0  2023 ?        00:07:12 /sbin/multipathd -d -s
+root      189861       2  0  2023 ?        00:00:00 [xfsalloc]
+root      189862       2  0  2023 ?        00:00:00 [xfs_mru_cache]
+root      190229       1  0  2023 ?        00:00:00 /usr/lib/policykit-1/polkitd --no-debug
+root      190309       1  0  2023 ?        00:00:03 /usr/lib/udisks2/udisksd
+root      190563       1  0  2023 ?        00:00:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root      190622       1  0  2023 ?        00:00:00 /usr/sbin/ModemManager
+openldap 1978278       1  0 Jan05 ?        00:00:00 /usr/sbin/slapd -h ldap:/// ldapi:/// -g openldap -u openldap -F /etc/ldap/slapd.d
+pravang  1978686       1  0 Jan05 ?        00:23:10 /usr/bin/java -Xms2048m -Xmx2048m -Duser.timezone=Asia/Seoul -Dspring.profiles.active=pprod -jar /opt/pravang/pravang-cs.jar
+root     2521852       2  0 Jan16 ?        00:00:03 [kworker/5:0-events]
+root     2530383       2  0 Jan16 ?        00:00:03 [kworker/2:0-memcg_kmem_cache]
+root     2559080       2  0 Jan17 ?        00:00:02 [kworker/6:2-mm_percpu_wq]
+root     2572348       2  0 Jan17 ?        00:00:02 [kworker/4:1-events]
+root     2599199       2  0 Jan17 ?        00:00:00 [kworker/7:2-events]
+root     2599510       2  0 00:00 ?        00:00:00 [kworker/5:2]
+root     2600489       2  0 00:26 ?        00:00:00 [kworker/1:0-cgroup_destroy]
+root     2608171       2  0 04:08 ?        00:00:01 [kworker/0:1-events]
+root     2608172       2  0 04:08 ?        00:00:02 [kworker/4:2-events]
+root     2612324       2  0 06:08 ?        00:00:00 [kworker/6:0-events]
+root     2612713       2  0 06:16 ?        00:00:00 [kworker/2:2-cgroup_destroy]
+root     2617016       2  0 08:16 ?        00:00:00 [kworker/0:0]
+root     2621163       2  0 10:16 ?        00:00:00 [kworker/1:2-events]
+root     2623060       2  0 11:11 ?        00:00:00 [kworker/3:0-events]
+root     2630442       2  0 14:42 ?        00:00:00 [kworker/7:1-mm_percpu_wq]
+root     2632999       2  0 15:55 ?        00:00:00 [kworker/u128:2-events_unbound]
+root     2637833       2  0 18:15 ?        00:00:00 [kworker/u128:1-events_unbound]
+root     2638256       2  0 18:26 ?        00:00:00 [kworker/3:1-events]
+root     2640109  190563  0 19:19 ?        00:00:01 sshd: root@pts/0
+root     2640122       1  0 19:19 ?        00:00:00 /lib/systemd/systemd --user
+root     2640124 2640122  0 19:19 ?        00:00:00 (sd-pam)
+root     2640129       2  0 19:19 ?        00:00:00 [kworker/3:2-events]
+root     2640136       2  0 19:19 ?        00:00:00 [kworker/3:3]
+root     2640261 2640109  0 19:19 pts/0    00:00:00 -bash
+root     2640309       2  0 19:20 ?        00:00:00 [kworker/u128:0-events_power_efficient]
+root     2640439 2640261  0 19:24 pts/0    00:00:00 /bin/sh ./linux.sh
+root     2640451  188400  0 19:24 ?        00:00:00 /lib/systemd/systemd-udevd
+root     2640454 2640439  0 19:24 pts/0    00:00:00 ps -ef
+ 
+###################################   User Env   #######################################
+LESSOPEN=| /usr/bin/lesspipe %s
+LANGUAGE=en_US:en
+USER=root
+SSH_CLIENT=172.16.1.57 64423 22
+XDG_SESSION_TYPE=tty
+SHLVL=1
+MOTD_SHOWN=pam
+HOME=/root
+SSH_TTY=/dev/pts/0
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/0/bus
+LOGNAME=root
+_=./linux.sh
+XDG_SESSION_CLASS=user
+TERM=xterm
+XDG_SESSION_ID=8866
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+XDG_RUNTIME_DIR=/run/user/0
+LANG=C
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SHELL=/bin/bash
+LESSCLOSE=/usr/bin/lesspipe %s %s
+PWD=/root
+SSH_CONNECTION=172.16.1.57 64423 172.21.120.123 22
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+ 
+###################################   lsof -i -P   #####################################
+COMMAND       PID            USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+systemd         1            root   51u  IPv4   18621      0t0  TCP *:111 (LISTEN)
+systemd         1            root   52u  IPv4   18622      0t0  UDP *:111 
+systemd         1            root   53u  IPv6   18625      0t0  TCP *:111 (LISTEN)
+systemd         1            root   54u  IPv6   18628      0t0  UDP *:111 
+rpcbind       638            _rpc    4u  IPv4   18621      0t0  TCP *:111 (LISTEN)
+rpcbind       638            _rpc    5u  IPv4   18622      0t0  UDP *:111 
+rpcbind       638            _rpc    6u  IPv6   18625      0t0  TCP *:111 (LISTEN)
+rpcbind       638            _rpc    7u  IPv6   18628      0t0  UDP *:111 
+dhclient      675            root    9u  IPv4   25023      0t0  UDP *:68 
+chronyd       828         _chrony    5u  IPv4   27368      0t0  UDP localhost:323 
+chronyd       828         _chrony    6u  IPv6   27369      0t0  UDP ip6-localhost:323 
+systemd-r  183771 systemd-resolve   12u  IPv4  649666      0t0  UDP localhost:53 
+systemd-r  183771 systemd-resolve   13u  IPv4  649667      0t0  TCP localhost:53 (LISTEN)
+sshd       190563            root    3u  IPv4  666644      0t0  TCP *:22 (LISTEN)
+sshd       190563            root    4u  IPv6  666646      0t0  TCP *:22 (LISTEN)
+slapd     1978278        openldap    8u  IPv4 7304898      0t0  TCP *:389 (LISTEN)
+slapd     1978278        openldap    9u  IPv6 7304899      0t0  TCP *:389 (LISTEN)
+java      1978686         pravang   26u  IPv4 7309860      0t0  TCP *:8080 (LISTEN)
+sshd      2640109            root    4u  IPv4 9878374      0t0  TCP ldap.pravang.com:22->172.16.1.57:64423 (ESTABLISHED)
+ 
+##################################   shadow_passwd   ###################################
+ 
+==========================   System Information Query End   ============================
+ 
+
+**************************************   START   ***************************************
+
+
+========================================================================================
+========================================================================================
+
+INFO_CHKEND
+1.01 START
+#######   1.계정관리 - 1.1 관리자 및 사용자 계정 UID(GID) 중복   ################
+---------------------------------------------------------------------------------
+■ 기준 : root 계정만이 UID가 0이면 양호
+■ 현황
+ 
+root -> UID=0
+☞ /etc/passwd 파일 내용
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+usbmux:x:111:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:112:65534::/run/sshd:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+_chrony:x:113:117:Chrony daemon,,,:/var/lib/chrony:/usr/sbin/nologin
+_rpc:x:114:65534::/run/rpcbind:/usr/sbin/nologin
+nbpmon:x:1000:1000:agent-account:/home1/nbpmon:/bin/bash
+fwupd-refresh:x:115:119:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+pravang:x:116:1001::/home/pravang:/usr/sbin/nologin
+openldap:x:117:120:OpenLDAP Server Account,,,:/var/lib/ldap:/bin/false
+ 
+● 1.01 결과 : 양호
+#################################################################################
+========================================================================================
+1.01 END
+ 
+1.02 START
+#######   1.계정관리 - 1.2 불필요한 계정 관리   #################################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/passwd파일에 기본계정이나 test, 1234 등의 계정이 존재할 경우 취약
+■ 현황
+ 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+usbmux:x:111:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:112:65534::/run/sshd:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+_chrony:x:113:117:Chrony daemon,,,:/var/lib/chrony:/usr/sbin/nologin
+_rpc:x:114:65534::/run/rpcbind:/usr/sbin/nologin
+nbpmon:x:1000:1000:agent-account:/home1/nbpmon:/bin/bash
+fwupd-refresh:x:115:119:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+pravang:x:116:1001::/home/pravang:/usr/sbin/nologin
+openldap:x:117:120:OpenLDAP Server Account,,,:/var/lib/ldap:/bin/false
+● 1.02 결과 : 수동
+#################################################################################
+========================================================================================
+1.02 END
+ 
+1.03 START
+#######   1.계정관리 - 1.3 Shell 제한    ########################################
+---------------------------------------------------------------------------------
+■ 기준 : 로그인이 필요하지 않은 시스템 계정에 /bin/false(nologin) 쉘이 부여되어 있으면 양호
+■ 현황
+ 
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+● 1.03 결과 : 양호
+#################################################################################
+========================================================================================
+1.03 END
+ 
+1.04 START
+#######   1.계정관리 - 1.4 패스워드 정책설정   ##################################
+---------------------------------------------------------------------------------
+■ 기준 : 패스워드 최소 길이가 8자이상, 최대 사용기간이 90일이하, 최소 사용기간이 1일로 설정되어 있으면 양호(내부규정에 따라 설정)
+■ 현황
+ 
+ 
+PASS_MAX_DAYS	120
+ 
+PASS_MIN_DAYS	90
+ 
+● 1.04 결과 : 취약
+#################################################################################
+========================================================================================
+1.04 END
+ 
+1.05 START
+#######   1.계정관리 - 1.5 SU 명령어 제한   #####################################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/pam.d/su 파일의 설정이 아래와 같을 경우 양호, 아래설정이 없을 경우 /bin/su 파일 권한이 4750 이면 양호
+auth       required   /lib/security/pam_wheel.so debug group=wheel
+또는
+auth       required     /lib/security//pam_wheel.so use_uid
+■ 현황
+ 
+① /etc/pam.d/su 파일
+# auth       required   pam_wheel.so
+# auth       required   pam_wheel.so deny group=nosu
+ 
+② /bin/su 파일
+-rwsr-xr-x 1 root root 67816 May 31  2023 /bin/su
+ 
+③ /etc/group 파일
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog
+tty:x:5:syslog
+disk:x:6:
+mail:x:8:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:
+floppy:x:25:
+tape:x:26:
+sudo:x:27:
+audio:x:29:
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:
+staff:x:50:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+uuidd:x:112:
+tcpdump:x:113:
+ssh:x:114:
+landscape:x:115:
+lxd:x:116:
+systemd-coredump:x:999:
+_chrony:x:117:
+netdev:x:118:
+nbpmon:x:1000:
+dip:x:30:
+games:x:60:
+fwupd-refresh:x:119:
+pravang:x:1001:
+openldap:x:120:
+● 1.05 결과 : 취약
+#################################################################################
+========================================================================================
+1.05 END
+ 
+1.06 START
+#######   1.계정관리 - 1.6 취약한 패스워드 사용   ###############################
+---------------------------------------------------------------------------------
+■ 기준 : John the Ripper를 이용해서 크랙킹되는 패스워드가 없으면 양호
+■ 현황
+ 
+☞ /etc/passwd 파일 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+usbmux:x:111:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:112:65534::/run/sshd:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+_chrony:x:113:117:Chrony daemon,,,:/var/lib/chrony:/usr/sbin/nologin
+_rpc:x:114:65534::/run/rpcbind:/usr/sbin/nologin
+nbpmon:x:1000:1000:agent-account:/home1/nbpmon:/bin/bash
+fwupd-refresh:x:115:119:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+pravang:x:116:1001::/home/pravang:/usr/sbin/nologin
+openldap:x:117:120:OpenLDAP Server Account,,,:/var/lib/ldap:/bin/false
+ 
+☞ /etc/shadow 파일 
+root:$6$MfIiT.j8XcxpavEd$e6ooUHcnW0DgZC3D3xQSh1.RoxFJXVfg3qIotB96qY6Sr5MpwBeQSV.KgAH.BJ9/BxEyIThbmceg.c.a5hXwM/:19688:0:99999:7:::
+daemon:*:18863:0:99999:7:::
+bin:*:18863:0:99999:7:::
+sys:*:18863:0:99999:7:::
+man:*:18863:0:99999:7:::
+mail:*:18863:0:99999:7:::
+proxy:*:18863:0:99999:7:::
+www-data:*:18863:0:99999:7:::
+backup:*:18863:0:99999:7:::
+list:*:18863:0:99999:7:::
+irc:*:18863:0:99999:7:::
+gnats:*:18863:0:99999:7:::
+nobody:*:18863:0:99999:7:::
+systemd-network:*:18863:0:99999:7:::
+systemd-resolve:*:18863:0:99999:7:::
+systemd-timesync:*:18863:0:99999:7:::
+messagebus:*:18863:0:99999:7:::
+syslog:*:18863:0:99999:7:::
+_apt:*:18863:0:99999:7:::
+tss:*:18863:0:99999:7:::
+uuidd:*:18863:0:99999:7:::
+tcpdump:*:18863:0:99999:7:::
+landscape:*:18863:0:99999:7:::
+pollinate:*:18863:0:99999:7:::
+usbmux:*:19254:0:99999:7:::
+sshd:*:19254:0:99999:7:::
+systemd-coredump:!!:19254::::::
+lxd:!:19254::::::
+_chrony:*:19254:0:99999:7:::
+_rpc:*:19254:0:99999:7:::
+nbpmon:!:19254:0:99999:7:::
+fwupd-refresh:*:19692:90:99999:30:::
+pravang:*:19727:90:99999:30:::
+openldap:!:19727:90:99999:30:::
+● 1.06 결과 : 수동
+#################################################################################
+========================================================================================
+1.06 END
+ 
+1.07 START
+#######   1.계정관리 - 1.7 패스워드 파일 Shadowing   ############################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/passwd의 두번째 필드가 'x'로 되어 있고, /etc/shadow 가 존재하면 양호
+■ 현황
+ 
+☞ /etc/passwd 파일 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+usbmux:x:111:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:112:65534::/run/sshd:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+_chrony:x:113:117:Chrony daemon,,,:/var/lib/chrony:/usr/sbin/nologin
+_rpc:x:114:65534::/run/rpcbind:/usr/sbin/nologin
+nbpmon:x:1000:1000:agent-account:/home1/nbpmon:/bin/bash
+fwupd-refresh:x:115:119:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+pravang:x:116:1001::/home/pravang:/usr/sbin/nologin
+openldap:x:117:120:OpenLDAP Server Account,,,:/var/lib/ldap:/bin/false
+● 1.07 결과 : 양호
+#################################################################################
+========================================================================================
+1.07 END
+ 
+1.08  START
+#######   1.계정관리 - 1.8 로그인 설정(Solaris Only)   ##########################
+---------------------------------------------------------------------------------
+■ 기준 : 해당사항 없습니다.
+■ 현황
+ 
+● 1.08 결과 : N/A
+#################################################################################
+========================================================================================
+1.08 END
+ 
+2.01 START
+#######   2.접근통제 - 2.1 계정 관련 파일의 접근권한 설정   #####################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/passwd, /etc/group 파일의 권한이 444 또는 644이고 /etc/shadow 파일의 권한이 400 또는 600이면 양호
+■ 현황
+ 
+-rw-r--r-- 1 root root 1923 Jan  5 15:49 /etc/passwd
+ 
+-rw-r--r-- 1 root root 806 Jan  5 15:49 /etc/group
+ 
+-r-------- 1 root shadow 1079 Jan  5 15:49 /etc/shadow
+● 2.01 결과 : 양호
+#################################################################################
+========================================================================================
+2.01 END
+ 
+2.02 START
+#######   2.접근통제 - 2.2 주요 디렉터리 접근권한 설정   ########################
+---------------------------------------------------------------------------------
+■ 기준 : 소유주가 root(bin or sys)이며, 다른사용자(Other)의 쓰기 권한이 없을 경우 양호
+■ 현황
+ 
+☞ 주요 디렉터리의 소유자 및 접근권한 상태
+drwxr-xr-x 109 root root 4096 Jan 5 16:11 /etc
+lrwxrwxrwx 1 root root 7 Aug 24 2021 /bin -> usr/bin
+drwxr-xr-x 2 root root 36864 Jan 5 15:49 /usr/bin
+lrwxrwxrwx 1 root root 8 Aug 24 2021 /sbin -> usr/sbin
+drwxr-xr-x 2 root root 20480 Jan 5 16:11 /usr/sbin
+● 2.02 결과 : 양호
+#################################################################################
+========================================================================================
+2.02 END
+ 
+2.03 START
+#######   2.접근통제 - 2.3 홈 디렉터리 접근권한 설정      #######################
+---------------------------------------------------------------------------------
+■ 기준 : 홈 디렉터리에 타사용자 쓰기권한이 없으면 양호
+■ 현황
+ 
+drwxr-xr-x 22 root root 4096 Nov 28 10:40 /
+drwxr-xr-x 18 root root 4020 Nov 28 10:42 /dev
+drwx------ 3 nbpmon nbpmon 4096 Sep 21  2022 /home1/nbpmon
+drwx------ 5 root root 4096 Jan 18 19:24 /root
+drwxr-xr-x 2 _rpc root 40 Nov 28 10:42 /run/rpcbind
+drwxr-xr-x 2 root root 40 Dec  1 14:27 /run/sshd
+drwxr-xr-x 24 root root 560 Jan  5 16:19 /run/systemd
+drwxr-xr-x 2 root root 60 Nov 28 10:42 /run/uuidd
+drwxr-xr-x 2 root root 20480 Jan  5 16:11 /usr/sbin
+drwxr-xr-x 7 root root 4096 Jan 18 06:25 /var/backups
+drwxr-xr-x 34 man man 4096 Jan 18 00:00 /var/cache/man
+drwxr-x--- 2 pollinate daemon 4096 Sep 19  2022 /var/cache/pollinate
+drwxr-xr-x 2 _chrony _chrony 4096 Jan 18 18:41 /var/lib/chrony
+drwxr-xr-x 2 landscape landscape 4096 Aug 24  2021 /var/lib/landscape
+drwxr-xr-x 2 openldap openldap 4096 Jan  5 16:19 /var/lib/ldap
+drwxr-xr-x 2 tss tss 4096 Dec  4  2019 /var/lib/tpm
+drwxrwsr-x 2 root mail 4096 Aug 24  2021 /var/mail
+ls: cannot access '/var/run/ircd': No such file or directory
+ls: cannot access '/var/snap/lxd/common/lxd': No such file or directory
+ 
+● 2.03 결과 : 취약
+#################################################################################
+========================================================================================
+2.03 END
+ 
+2.04 START
+#######   2.접근통제 - 2.4 홈디렉터리 환경변수 파일 접근권한 설정   #############
+---------------------------------------------------------------------------------
+■ 기준 : 홈디렉터리 환경변수 파일이 타사용자에게 쓰기 권한이 없으면 양호
+■ 현황
+ 
+-rw-r--r-- 1 nbpmon nbpmon 807 Feb 25  2020 /home1/nbpmon/.profile
+-rw-r--r-- 1 nbpmon nbpmon 3771 Feb 25  2020 /home1/nbpmon/.bashrc
+-rw-r--r-- 1 root root 161 Dec  5  2019 /root/.profile
+-rw-r--r-- 1 root root 3106 Dec  5  2019 /root/.bashrc
+-rw------- 1 root root 0 Jan 18 19:19 /root/.bash_history
+● 2.04 결과 : 양호
+#################################################################################
+========================================================================================
+2.04 END
+ 
+2.05 START
+#######   2.접근통제 - 2.5 네트워크 서비스 설정파일의 접근권한 설정   ###########
+---------------------------------------------------------------------------------
+■ 기준 : /etc/hosts, /etc/services, etc/xinetd.conf 파일 및 /etc/xinetd.d/ 하위 모든 파일이 타사용자 쓰기권한이 없으면 양호
+■ 현황
+ 
+-rw-r--r-- 1 root root 269 Jan  5 16:11 /etc/hosts
+-rw-r--r-- 1 root root 14464 Feb 17  2020 /etc/services
+/etc/xinetd.d 디렉터리가 없습니다.
+ /etc/xinetd.conf 파일이 없습니다.
+● 2.05 결과 : 양호
+#################################################################################
+========================================================================================
+2.05 END
+ 
+2.06 START
+#######   2.접근통제 - 2.6 ftp 접근제어 파일권한 설정   #########################
+---------------------------------------------------------------------------------
+■ 기준 : ftpusers 파일이 타사용자 쓰기권한이 없으면 양호
+■ 현황
+ 
+ftp disable
+ 
+ /etc/ftpd/ftpusers 파일이 없습니다.
+ 
+ /etc/ftpusers 파일이 없습니다.
+ 
+ /etc/vsftpd/ftpusers 파일이 없습니다.
+ 
+ /etc/vsftpd/user_list 파일이 없습니다.
+● 2.06 결과 : 양호
+#################################################################################
+========================================================================================
+2.06 END
+ 
+2.07 START
+#######   2.접근통제 - 2.7 root 원격 접근제어 파일권한 설정   ###################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/pam.d/login 파일이 타사용자에게 쓰기권한이 없으면 양호
+■ 현황
+ 
+-rw-r--r-- 1 root root 4126 Apr 16  2020 /etc/pam.d/login
+● 2.07 결과 : 양호
+#################################################################################
+========================================================================================
+2.07 END
+ 
+2.08 START
+#######   2.접근통제 - 2.8 NFS 접근제어 파일권한 설정   #########################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/exports파일이 타사용자 쓰기권한 없으면 양호
+■ 현황
+ 
+ /etc/exports 파일이 없습니다.
+● 2.08 결과 : 양호
+#################################################################################
+========================================================================================
+2.08 END
+ 
+2.09 START
+#######   2.접근통제 - 2.9 SNMP 설정파일 접근권한 설정   ########################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/snmp/conf/snmpd.conf 파일이 타사용자 쓰기권한 없으면 양호
+■ 현황
+ 
+① SNMP 서비스 여부 
+SNMP가 비실행중입니다. 
+● 2.09 결과 : 양호
+#################################################################################
+========================================================================================
+2.09 END
+ 
+2.10 START
+#######   2.접근통제 - 2.10 R 서비스 설정파일 접근권한 설정   ###################
+---------------------------------------------------------------------------------
+■ 기준 : 설정 파일 (hosts.equiv, /root/.rhosts)의 권한이 400(600)이거나 존재하지 않을 경우 양호
+■ 현황
+ 
+해당 파일이 없습니다.
+● 2.10 결과 : 양호
+#################################################################################
+========================================================================================
+2.09  END
+ 
+2.11 START
+#######   2.접근통제 - 2.11 syslog.conf 파일 접근권한 설정   ####################
+---------------------------------------------------------------------------------
+■ 기준 : syslog.conf 파일의 권한이 타사용자에게 쓰기권한이 없으면 양호
+■ 현황
+ 
+/etc/syslog.conf 파일이 없습니다.
+-rw-r--r-- 1 root root 1382 Feb 12  2020 /etc/rsyslog.conf
+● 2.11 결과 : 양호
+#################################################################################
+========================================================================================
+2.11 END
+ 
+2.11 START
+#######   2.접근통제 - 2.12 Cron 파일 접근권한 설정   ###########################
+---------------------------------------------------------------------------------
+■ 기준 : Crontab 관련 파일에 타사용자에게 쓰기권한이 없으면 양호
+■ 현황
+ 
+-rw-r--r-- 1 root root 1042 Feb 14  2020 /etc/crontab
+-rwxr-xr-x 1 root root 376 Dec  5  2019 /etc/cron.daily/apport
+-rwxr-xr-x 1 root root 1478 Apr  9  2020 /etc/cron.daily/apt-compat
+-rwxr-xr-x 1 root root 355 Dec 29  2017 /etc/cron.daily/bsdmainutils
+-rwxr-xr-x 1 root root 384 Nov 20  2019 /etc/cron.daily/cracklib-runtime
+-rwxr-xr-x 1 root root 1187 Sep  6  2019 /etc/cron.daily/dpkg
+-rwxr-xr-x 1 root root 377 Jan 21  2019 /etc/cron.daily/logrotate
+-rwxr-xr-x 1 root root 1123 Feb 26  2020 /etc/cron.daily/man-db
+-rwxr-xr-x 1 root root 4574 Jul 19  2019 /etc/cron.daily/popularity-contest
+-rwxr-xr-x 1 root root 441 Sep 12  2017 /etc/cron.daily/sysstat
+-rwxr-xr-x 1 root root 214 May 15  2021 /etc/cron.daily/update-notifier-common
+/etc/cron.hourly/*  이 없습니다.
+/etc/cron.monthly/*  이 없습니다.
+-rwxr-xr-x 1 root root 813 Feb 26  2020 /etc/cron.weekly/man-db
+-rwxr-xr-x 1 root root 403 Aug  5  2021 /etc/cron.weekly/update-notifier-common
+/var/spool/cron/atjobs  이 없습니다.
+/var/spool/cron/atspool  이 없습니다.
+/var/spool/cron/crontabs  이 없습니다.
+● 2.12 결과 : 양호
+#################################################################################
+========================================================================================
+2.12 END
+ 
+2.13 START
+#######   2.접근통제 - 2.13 로그 파일 접근권한 설정   ###########################
+---------------------------------------------------------------------------------
+■ 기준 : 로그 파일의 권한중 타사용자에 쓰기권한이 부여되어 있지 않을 경우 양호
+■ 현황 
+ 
+-rw-rw-r-- 1 root utmp 14592 Jan 18 19:19 /var/log/wtmp
+-rw-rw-r-- 1 root utmp 1920 Jan 18 19:19 /var/run/utmp
+-rw-rw---- 1 root utmp 0 Jan  1 00:00 /var/log/btmp
+-rw-rw-r-- 1 root utmp 292584 Jan 18 19:19 /var/log/lastlog
+ 
+로그 파일이 존재하지 않거나, 타 사용자에 쓰기 권한이 부여되어 있지 않습니다.
+ 
+● 2.13 결과 : 양호
+#################################################################################
+========================================================================================
+2.13 END
+ 
+2.14 START
+#######   2.접근통제 - 2.14 World Writable 파일 관리   ##########################
+---------------------------------------------------------------------------------
+■ 기준 : 주요 디렉터리(/sbin, /etc/, /bin, /usr/bin, /usr/sbin, /tmp)에 777권한 파일이 존재하지 않으면 양호
+■ 현황
+ 
+주요 디렉터리에 777 권한의 파일이 존재하지 않습니다.
+● 2.14 결과 : 양호
+#################################################################################
+========================================================================================
+2.14 END
+ 
+3.01 START
+#######   3.시스템환경 설정 - 3.1 UMASK 설정   ##################################
+---------------------------------------------------------------------------------
+■ 기준 : UMASK 값이 022 또는 027이면 양호
+■ 현황
+  
+① UMASK 명령어  
+0022
+  
+② /etc/bashrc 파일  
+/etc/bashrc 파일이 없습니다.
+● 3.01 결과 : 양호
+#################################################################################
+========================================================================================
+3.01 END
+ 
+3.02 START
+#######   3.시스템환경 설정 - 3.2 Setuid, Setgid 설정   #########################
+---------------------------------------------------------------------------------
+■ 기준 : Setuid, Setgid가 설정된 불필요한 파일이 존재하지 않으면 양호
+■ 현황
+ 
+-rwsr-sr-x 1 daemon daemon 55560 Nov 13  2018 /usr/bin/at
+-rwsr-xr-x 1 root   root   44784 Nov 29  2022 /usr/bin/newgrp
+● 3.02 결과 : 취약
+#################################################################################
+========================================================================================
+3.02 END
+ 
+3.03 START
+#######   3.시스템환경 설정 - 3.3 PATH(1) _ 현재 디렉터리(.) 설정   #############
+---------------------------------------------------------------------------------
+■ 기준 : 현재 위치를 의미하는 . 이 없거나, PATH 맨 뒤에 존재하면 양호
+■ 현황
+ 
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+ 
+● 3.03 결과 : 양호
+#################################################################################
+========================================================================================
+3.03 END
+ 
+3.04 START
+#######   3.시스템환경 설정 - 3.4 PATH(2) _ 존재하지 않는 디렉터리 설정   #######
+---------------------------------------------------------------------------------
+■ 기준 : PATH 환경변수에 설정된 디렉터리가 모두 존재하는 경우 양호
+■ 현황
+ 
+☞  현재 PATH 설정내용
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+/usr/games
+/usr/local/games
+/snap/bin
+ 
+☞ 설정된 PATH에 존재하지 않는 디렉터리
+● 3.04 결과 : 양호
+#################################################################################
+========================================================================================
+3.04 END
+ 
+3.05 START
+#######   3.시스템환경 설정 - 3.5 PATH(3) _ 디렉터리 소유자 및 접근권한 설정   ##
+---------------------------------------------------------------------------------
+■ 기준 : PATH 환경변수에 설정된 디렉터리에 다른사용자(other)의 쓰기권한이 없는경우 양호
+■ 현황
+ 
+☞ 현재 PATH 설정내용
+drwxr-xr-x 2 root root 4096 Aug 24 2021 /usr/local/sbin
+drwxr-xr-x 2 root root 4096 Aug 24 2021 /usr/local/bin
+drwxr-xr-x 2 root root 20480 Jan 5 16:11 /usr/sbin
+drwxr-xr-x 2 root root 36864 Jan 5 15:49 /usr/bin
+lrwxrwxrwx 1 root root 8 Aug 24 2021 /sbin -> usr/sbin
+lrwxrwxrwx 1 root root 7 Aug 24 2021 /bin -> usr/bin
+drwxr-xr-x 2 root root 4096 Apr 15 2020 /usr/games
+drwxr-xr-x 2 root root 4096 Aug 24 2021 /usr/local/games
+drwxr-xr-x 2 root root 4096 Sep 19 2022 /snap/bin
+● 3.05 결과 : 양호
+#################################################################################
+========================================================================================
+3.05 END
+ 
+3.06 START
+#######   3.시스템 환경설정 - 3.6 Session Timeout 설정   ########################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/profile 에서 TMOUT=300 또는 /etc/csh.login 에서 autologout=5 로 설정되어 있으면 양호
+■ 현황
+ 
+☞ /etc/profile 파일설정
+/etc/profile 파일에 TMOUT 설정이 없거나, TMOUT= 300으로 설정되어 있지 않습니다.
+ 
+☞ /etc/csh.login 파일설정
+/etc/csh.login 파일이 없습니다.
+● 3.06 결과 : 취약
+#################################################################################
+========================================================================================
+3.06 END
+ 
+4.01 START
+#######   4.네트워크 서비스 - 4.1 서비스 배너 관리   ############################
+---------------------------------------------------------------------------------
+■ 기준 : Telnet, FTP, SMTP, DNS 가 구동중이지 않거나 배너에 O/S 및 버전 정보가 없을 경우
+■ 현황
+ 
+ 
+☞ Telnet 서비스 비실행중입니다.
+  
+ 
+☞ ftp 서비스 비실행중입니다.
+  
+  
+☞ SMTP 서비스 비실행중입니다.
+  
+☞ DNS 서비스 비실행중입니다.
+● 4.01 결과 : 양호
+#################################################################################
+========================================================================================
+4.01 END
+  
+4.02 START
+#######   4.네트워크 서비스 - 4.2 RPC 서비스   ##################################
+---------------------------------------------------------------------------------
+■ 기준 : 불필요한 rpc 관련 서비스가 존재하지 않으면 양호
+■ 현황
+ 
+/etc/xinetd.d 디렉터리가 존재하지 않습니다.
+ 
+/etc/xinetd.d 내용 
+------------------ 
+xinetd.d에 파일이 없습니다.
+ 
+/etc/inetd.conf 파일이 존재하지 않습니다.
+● 4.02 결과 : 양호
+#################################################################################
+========================================================================================
+4.02 END
+ 
+4.03 START
+#######   4.네트워크 서비스 - 4.3 R 서비스 _ 신뢰 관계 설정   ###################
+---------------------------------------------------------------------------------
+■ 기준 : r 서비스를 사용하지 않거나,  + 가 설정되어 있지 않으면 양호
+■ 현황
+ 
+☞ R 서비스 구동 진단
+r 서비스가 존재하지 않습니다.
+ 
+● 4.03 결과 : 양호
+#################################################################################
+========================================================================================
+4.03 END
+ 
+4.04 START
+#######   4.네트워크 서비스 - 4.4 NFS(1) _ 공유 설정   ##########################
+---------------------------------------------------------------------------------
+■ 기준 : NFS가 중지되어 있거나 NFS 설정파일에 Everyone 공유가 없을 경우에 양호
+■ 현황
+ 
+☞ NFS 데몬(nfsd)확인
+ 
+ 
+NFS 서비스가 비실행중입니다.
+● 4.04 결과 : 양호
+#################################################################################
+========================================================================================
+4.04 END
+ 
+4.05 START
+#######   4.네트워크 서비스 - 4.5 NFS(2) _ 원격 마운트 설정   ###################
+---------------------------------------------------------------------------------
+■ 기준 : NFS 서비스가 비실행중이거나 showmount값이 없으면 양호
+■ 현황
+ 
+ 
+NFS 서비스가 비실행중입니다. 
+● 4.05 결과 : 양호
+#################################################################################
+========================================================================================
+4.05 END
+ 
+4.06 START
+#######   4.네트워크 서비스 - 4.6 NFS(3) _ statd, lockd, automountd 제거   ######
+---------------------------------------------------------------------------------
+■ 기준 : statd, lockd, automountd 서비스가 구동중이지 않을 경우 양호
+■ 현황
+ 
+☞ statd, lockd, Automount 데몬 확인
+ 
+ 
+statd, lockd, automount 데몬이 없습니다. 
+● 4.06 결과 : 양호
+#################################################################################
+========================================================================================
+4.06 END
+ 
+4.07 START
+#######   4.네트워크 서비스 - 4.7 FTP(1) _ 사용자 제한   ########################
+---------------------------------------------------------------------------------
+■ 기준 : ftp 를 사용하지 않거나 ftp 사용시 ftpusers 파일에 root 가 있을 경우 양호
+■ 현황
+ 
+ 
+☞ ftp 서비스 비 실행중입니다
+● 4.07 결과 : 양호
+#################################################################################
+========================================================================================
+4.07 END
+ 
+4.08 START
+#######   4.네트워크 서비스 - 4.8 FTP(2) _ Anonymous 제한   #####################
+---------------------------------------------------------------------------------
+■ 기준 : ftp 를 사용하지 않거나, ftp 사용시 /etc/passwd 파일에 ftp 계정이 존재하지 않을 경우 양호
+■ 현황
+ 
+ 
+ftp 서비스가 비실행중입니다. 
+● 4.08 결과 : 양호
+#################################################################################
+========================================================================================
+4.08 END
+ 
+4.09 START
+#######   4.네트워크 서비스 - 4.9 FTP(3) _ umask 설정   #########################
+---------------------------------------------------------------------------------
+■ 기준 : ftp 를 사용하지 않거나, ftp 사용시 ftp umask 가 077 로 설정되어 있을 경우 양호
+■ 현황
+ 
+ 
+☞ ftp 서비스 비 실행중입니다. 
+● 4.09 결과 : 양호
+#################################################################################
+========================================================================================
+4.09 END
+ 
+4.10 START
+#######   4.네트워크 서비스 - 4.10 SMTP(1) - 사용자 정보 제공 방지   ############
+---------------------------------------------------------------------------------
+■ 기준 : SMTP 서비스를 사용하지 않거나 noexpn, novrfy 옵션이 설정되어 있을 경우 양호
+■ 현황
+ 
+① Sendmail 프로세스 확인
+Sendmail 서비스가 비실행중입니다.
+ 
+ 
+② /etc/mail/sendmail.cf 파일의 옵션 확인
+/etc/mail/sendmail.cf 파일 없습니다.
+● 4.10 결과 : 양호
+#################################################################################
+========================================================================================
+4.10 END
+ 
+4.11 START
+#######   4.네트워크 서비스 - 4.11 SMTP(2) _ 일반 사용자의 Sendmail 실행 제한   #
+---------------------------------------------------------------------------------
+■ 기준 : SMTP 서비스를 사용하지 않거나 restrictqrun 옵션이 설정되어 있을 경우 양호
+■ 현황
+ 
+① Sendmail 프로세스 확인
+Sendmail 서비스가 비실행중입니다.
+ 
+ 
+② /etc/mail/sendmail.cf 파일의 옵션 확인
+/etc/mail/sendmail.cf 파일 없습니다.
+● 4.11 결과 : 양호
+#################################################################################
+========================================================================================
+4.11  END
+ 
+4.12 START
+#######   4.네트워크 서비스 - 4.12 SMTP(3) _ 릴레이 제한   ######################
+---------------------------------------------------------------------------------
+■ 기준 : SMTP 서비스를 사용하지 않거나 릴레이 제한이 설정되어 있을 경우 양호
+■ 현황
+ 
+① Sendmail 프로세스 확인
+Sendmail 서비스가 비실행중입니다.
+ 
+ 
+② /etc/mail/sendmail.cf 파일의 옵션 확인
+/etc/mail/sendmail.cf 파일 없습니다.
+● 4.12 결과 : 양호
+#################################################################################
+========================================================================================
+4.12 END
+ 
+4.13 START
+#######   4.네트워크 서비스 - 4.13 Telnet _ root 계정 로그인 제한   #############
+---------------------------------------------------------------------------------
+■ 기준 : /etc/pam.d/login에서 auth required /lib/security/pam_securetty.so 라인에 주석(#) 이 없으면 양호
+■ 현황
+ 
+/etc/pam.d/login 파일에 설정값이 없습니다.
+ 
+☞ Telnet 서비스 비 실행중입니다
+ 
+● 4.13 결과 : 양호
+#################################################################################
+========================================================================================
+4.13 END
+ 
+4.14 START
+#######   4.네트워크 서비스 - 4.14 SNMP _ Community String 설정   ###############
+---------------------------------------------------------------------------------
+■ 기준 : SNMP 서비스를 사용하지 않거나 Community String이 public, private 이 아닐 경우 양호
+■ 현황
+ 
+① SNMP 서비스 여부 
+SNMP가 비실행중입니다. 
+ 
+ 
+② /etc/snmp/snmpd.conf 파일 
+ /etc/snmp/snmpd.conf 파일이 존재하지 않습니다. 
+ 
+ /etc/snmp/snmpd.conf 파일이 존재하지 않습니다. 
+ 
+ /usr/local/share/snmp/snmpd.conf 파일이 존재하지 않습니다. 
+ 
+● 4.14 결과 : 양호
+#################################################################################
+========================================================================================
+4.14 END
+ 
+4.15 START
+#######   4.네트워크 서비스 - 4.15 DNS _ Zone Transfer 설정   ###################
+---------------------------------------------------------------------------------
+■ 기준 : DNS 서비스를 사용하지 않거나 Zone Transfer 가 제한되어 있을 경우 양호
+■ 현황
+ 
+① DNS 프로세스 확인 
+DNS가 비실행중입니다.
+ 
+② /etc/named.conf 파일의 allow-transfer 확인
+/etc/named.conf 파일 없습니다.
+ 
+③ /etc/named.boot 파일의 xfrnets 확인
+/etc/named.boot 파일 없습니다.
+ 
+● 4.15 결과 : 양호
+#################################################################################
+========================================================================================
+4.15  END
+ 
+4.16 START
+#######   4.네트워크 서비스 - 4.16 xhost+ 설정   ################################
+---------------------------------------------------------------------------------
+■ 기준 : 자동 실행화일 파일에 “xhost +” 설정이 존재하지 않을 경우 양호
+■ 현황
+ 
+/.profile  파일 없습니다.
+/.cshrc  파일 없습니다.
+/.kshrc  파일 없습니다.
+/.login  파일 없습니다.
+/.bash_profile  파일 없습니다.
+/.bashrc  파일 없습니다.
+/.bash_login  파일 없습니다.
+/.xinitrc  파일 없습니다.
+/.xsession  파일 없습니다.
+//.profile  파일 없습니다.
+//.cshrc  파일 없습니다.
+//.kshrc  파일 없습니다.
+//.login  파일 없습니다.
+//.bash_profile  파일 없습니다.
+//.bashrc  파일 없습니다.
+//.bash_login  파일 없습니다.
+//.xinitrc  파일 없습니다.
+//.xsession  파일 없습니다.
+/bin/.profile  파일 없습니다.
+/bin/.cshrc  파일 없습니다.
+/bin/.kshrc  파일 없습니다.
+/bin/.login  파일 없습니다.
+/bin/.bash_profile  파일 없습니다.
+/bin/.bashrc  파일 없습니다.
+/bin/.bash_login  파일 없습니다.
+/bin/.xinitrc  파일 없습니다.
+/bin/.xsession  파일 없습니다.
+/dev/.profile  파일 없습니다.
+/dev/.cshrc  파일 없습니다.
+/dev/.kshrc  파일 없습니다.
+/dev/.login  파일 없습니다.
+/dev/.bash_profile  파일 없습니다.
+/dev/.bashrc  파일 없습니다.
+/dev/.bash_login  파일 없습니다.
+/dev/.xinitrc  파일 없습니다.
+/dev/.xsession  파일 없습니다.
+/home/pravang/.profile  파일 없습니다.
+/home/pravang/.cshrc  파일 없습니다.
+/home/pravang/.kshrc  파일 없습니다.
+/home/pravang/.login  파일 없습니다.
+/home/pravang/.bash_profile  파일 없습니다.
+/home/pravang/.bashrc  파일 없습니다.
+/home/pravang/.bash_login  파일 없습니다.
+/home/pravang/.xinitrc  파일 없습니다.
+/home/pravang/.xsession  파일 없습니다.
+/home/syslog/.profile  파일 없습니다.
+/home/syslog/.cshrc  파일 없습니다.
+/home/syslog/.kshrc  파일 없습니다.
+/home/syslog/.login  파일 없습니다.
+/home/syslog/.bash_profile  파일 없습니다.
+/home/syslog/.bashrc  파일 없습니다.
+/home/syslog/.bash_login  파일 없습니다.
+/home/syslog/.xinitrc  파일 없습니다.
+/home/syslog/.xsession  파일 없습니다.
+ cat /home1/nbpmon/.profile 
+----------------
+/home1/nbpmon/.cshrc  파일 없습니다.
+/home1/nbpmon/.kshrc  파일 없습니다.
+/home1/nbpmon/.login  파일 없습니다.
+/home1/nbpmon/.bash_profile  파일 없습니다.
+ cat /home1/nbpmon/.bashrc 
+----------------
+/home1/nbpmon/.bash_login  파일 없습니다.
+/home1/nbpmon/.xinitrc  파일 없습니다.
+/home1/nbpmon/.xsession  파일 없습니다.
+/nonexistent/.profile  파일 없습니다.
+/nonexistent/.cshrc  파일 없습니다.
+/nonexistent/.kshrc  파일 없습니다.
+/nonexistent/.login  파일 없습니다.
+/nonexistent/.bash_profile  파일 없습니다.
+/nonexistent/.bashrc  파일 없습니다.
+/nonexistent/.bash_login  파일 없습니다.
+/nonexistent/.xinitrc  파일 없습니다.
+/nonexistent/.xsession  파일 없습니다.
+ cat /root/.profile 
+----------------
+/root/.cshrc  파일 없습니다.
+/root/.kshrc  파일 없습니다.
+/root/.login  파일 없습니다.
+/root/.bash_profile  파일 없습니다.
+ cat /root/.bashrc 
+----------------
+/root/.bash_login  파일 없습니다.
+/root/.xinitrc  파일 없습니다.
+/root/.xsession  파일 없습니다.
+/run/rpcbind/.profile  파일 없습니다.
+/run/rpcbind/.cshrc  파일 없습니다.
+/run/rpcbind/.kshrc  파일 없습니다.
+/run/rpcbind/.login  파일 없습니다.
+/run/rpcbind/.bash_profile  파일 없습니다.
+/run/rpcbind/.bashrc  파일 없습니다.
+/run/rpcbind/.bash_login  파일 없습니다.
+/run/rpcbind/.xinitrc  파일 없습니다.
+/run/rpcbind/.xsession  파일 없습니다.
+/run/sshd/.profile  파일 없습니다.
+/run/sshd/.cshrc  파일 없습니다.
+/run/sshd/.kshrc  파일 없습니다.
+/run/sshd/.login  파일 없습니다.
+/run/sshd/.bash_profile  파일 없습니다.
+/run/sshd/.bashrc  파일 없습니다.
+/run/sshd/.bash_login  파일 없습니다.
+/run/sshd/.xinitrc  파일 없습니다.
+/run/sshd/.xsession  파일 없습니다.
+/run/systemd/.profile  파일 없습니다.
+/run/systemd/.cshrc  파일 없습니다.
+/run/systemd/.kshrc  파일 없습니다.
+/run/systemd/.login  파일 없습니다.
+/run/systemd/.bash_profile  파일 없습니다.
+/run/systemd/.bashrc  파일 없습니다.
+/run/systemd/.bash_login  파일 없습니다.
+/run/systemd/.xinitrc  파일 없습니다.
+/run/systemd/.xsession  파일 없습니다.
+/run/uuidd/.profile  파일 없습니다.
+/run/uuidd/.cshrc  파일 없습니다.
+/run/uuidd/.kshrc  파일 없습니다.
+/run/uuidd/.login  파일 없습니다.
+/run/uuidd/.bash_profile  파일 없습니다.
+/run/uuidd/.bashrc  파일 없습니다.
+/run/uuidd/.bash_login  파일 없습니다.
+/run/uuidd/.xinitrc  파일 없습니다.
+/run/uuidd/.xsession  파일 없습니다.
+/usr/sbin/.profile  파일 없습니다.
+/usr/sbin/.cshrc  파일 없습니다.
+/usr/sbin/.kshrc  파일 없습니다.
+/usr/sbin/.login  파일 없습니다.
+/usr/sbin/.bash_profile  파일 없습니다.
+/usr/sbin/.bashrc  파일 없습니다.
+/usr/sbin/.bash_login  파일 없습니다.
+/usr/sbin/.xinitrc  파일 없습니다.
+/usr/sbin/.xsession  파일 없습니다.
+/var/backups/.profile  파일 없습니다.
+/var/backups/.cshrc  파일 없습니다.
+/var/backups/.kshrc  파일 없습니다.
+/var/backups/.login  파일 없습니다.
+/var/backups/.bash_profile  파일 없습니다.
+/var/backups/.bashrc  파일 없습니다.
+/var/backups/.bash_login  파일 없습니다.
+/var/backups/.xinitrc  파일 없습니다.
+/var/backups/.xsession  파일 없습니다.
+/var/cache/man/.profile  파일 없습니다.
+/var/cache/man/.cshrc  파일 없습니다.
+/var/cache/man/.kshrc  파일 없습니다.
+/var/cache/man/.login  파일 없습니다.
+/var/cache/man/.bash_profile  파일 없습니다.
+/var/cache/man/.bashrc  파일 없습니다.
+/var/cache/man/.bash_login  파일 없습니다.
+/var/cache/man/.xinitrc  파일 없습니다.
+/var/cache/man/.xsession  파일 없습니다.
+/var/cache/pollinate/.profile  파일 없습니다.
+/var/cache/pollinate/.cshrc  파일 없습니다.
+/var/cache/pollinate/.kshrc  파일 없습니다.
+/var/cache/pollinate/.login  파일 없습니다.
+/var/cache/pollinate/.bash_profile  파일 없습니다.
+/var/cache/pollinate/.bashrc  파일 없습니다.
+/var/cache/pollinate/.bash_login  파일 없습니다.
+/var/cache/pollinate/.xinitrc  파일 없습니다.
+/var/cache/pollinate/.xsession  파일 없습니다.
+/var/lib/chrony/.profile  파일 없습니다.
+/var/lib/chrony/.cshrc  파일 없습니다.
+/var/lib/chrony/.kshrc  파일 없습니다.
+/var/lib/chrony/.login  파일 없습니다.
+/var/lib/chrony/.bash_profile  파일 없습니다.
+/var/lib/chrony/.bashrc  파일 없습니다.
+/var/lib/chrony/.bash_login  파일 없습니다.
+/var/lib/chrony/.xinitrc  파일 없습니다.
+/var/lib/chrony/.xsession  파일 없습니다.
+/var/lib/gnats/.profile  파일 없습니다.
+/var/lib/gnats/.cshrc  파일 없습니다.
+/var/lib/gnats/.kshrc  파일 없습니다.
+/var/lib/gnats/.login  파일 없습니다.
+/var/lib/gnats/.bash_profile  파일 없습니다.
+/var/lib/gnats/.bashrc  파일 없습니다.
+/var/lib/gnats/.bash_login  파일 없습니다.
+/var/lib/gnats/.xinitrc  파일 없습니다.
+/var/lib/gnats/.xsession  파일 없습니다.
+/var/lib/landscape/.profile  파일 없습니다.
+/var/lib/landscape/.cshrc  파일 없습니다.
+/var/lib/landscape/.kshrc  파일 없습니다.
+/var/lib/landscape/.login  파일 없습니다.
+/var/lib/landscape/.bash_profile  파일 없습니다.
+/var/lib/landscape/.bashrc  파일 없습니다.
+/var/lib/landscape/.bash_login  파일 없습니다.
+/var/lib/landscape/.xinitrc  파일 없습니다.
+/var/lib/landscape/.xsession  파일 없습니다.
+/var/lib/ldap/.profile  파일 없습니다.
+/var/lib/ldap/.cshrc  파일 없습니다.
+/var/lib/ldap/.kshrc  파일 없습니다.
+/var/lib/ldap/.login  파일 없습니다.
+/var/lib/ldap/.bash_profile  파일 없습니다.
+/var/lib/ldap/.bashrc  파일 없습니다.
+/var/lib/ldap/.bash_login  파일 없습니다.
+/var/lib/ldap/.xinitrc  파일 없습니다.
+/var/lib/ldap/.xsession  파일 없습니다.
+/var/lib/tpm/.profile  파일 없습니다.
+/var/lib/tpm/.cshrc  파일 없습니다.
+/var/lib/tpm/.kshrc  파일 없습니다.
+/var/lib/tpm/.login  파일 없습니다.
+/var/lib/tpm/.bash_profile  파일 없습니다.
+/var/lib/tpm/.bashrc  파일 없습니다.
+/var/lib/tpm/.bash_login  파일 없습니다.
+/var/lib/tpm/.xinitrc  파일 없습니다.
+/var/lib/tpm/.xsession  파일 없습니다.
+/var/lib/usbmux/.profile  파일 없습니다.
+/var/lib/usbmux/.cshrc  파일 없습니다.
+/var/lib/usbmux/.kshrc  파일 없습니다.
+/var/lib/usbmux/.login  파일 없습니다.
+/var/lib/usbmux/.bash_profile  파일 없습니다.
+/var/lib/usbmux/.bashrc  파일 없습니다.
+/var/lib/usbmux/.bash_login  파일 없습니다.
+/var/lib/usbmux/.xinitrc  파일 없습니다.
+/var/lib/usbmux/.xsession  파일 없습니다.
+/var/list/.profile  파일 없습니다.
+/var/list/.cshrc  파일 없습니다.
+/var/list/.kshrc  파일 없습니다.
+/var/list/.login  파일 없습니다.
+/var/list/.bash_profile  파일 없습니다.
+/var/list/.bashrc  파일 없습니다.
+/var/list/.bash_login  파일 없습니다.
+/var/list/.xinitrc  파일 없습니다.
+/var/list/.xsession  파일 없습니다.
+/var/mail/.profile  파일 없습니다.
+/var/mail/.cshrc  파일 없습니다.
+/var/mail/.kshrc  파일 없습니다.
+/var/mail/.login  파일 없습니다.
+/var/mail/.bash_profile  파일 없습니다.
+/var/mail/.bashrc  파일 없습니다.
+/var/mail/.bash_login  파일 없습니다.
+/var/mail/.xinitrc  파일 없습니다.
+/var/mail/.xsession  파일 없습니다.
+/var/run/ircd/.profile  파일 없습니다.
+/var/run/ircd/.cshrc  파일 없습니다.
+/var/run/ircd/.kshrc  파일 없습니다.
+/var/run/ircd/.login  파일 없습니다.
+/var/run/ircd/.bash_profile  파일 없습니다.
+/var/run/ircd/.bashrc  파일 없습니다.
+/var/run/ircd/.bash_login  파일 없습니다.
+/var/run/ircd/.xinitrc  파일 없습니다.
+/var/run/ircd/.xsession  파일 없습니다.
+/var/snap/lxd/common/lxd/.profile  파일 없습니다.
+/var/snap/lxd/common/lxd/.cshrc  파일 없습니다.
+/var/snap/lxd/common/lxd/.kshrc  파일 없습니다.
+/var/snap/lxd/common/lxd/.login  파일 없습니다.
+/var/snap/lxd/common/lxd/.bash_profile  파일 없습니다.
+/var/snap/lxd/common/lxd/.bashrc  파일 없습니다.
+/var/snap/lxd/common/lxd/.bash_login  파일 없습니다.
+/var/snap/lxd/common/lxd/.xinitrc  파일 없습니다.
+/var/snap/lxd/common/lxd/.xsession  파일 없습니다.
+/var/www/.profile  파일 없습니다.
+/var/www/.cshrc  파일 없습니다.
+/var/www/.kshrc  파일 없습니다.
+/var/www/.login  파일 없습니다.
+/var/www/.bash_profile  파일 없습니다.
+/var/www/.bashrc  파일 없습니다.
+/var/www/.bash_login  파일 없습니다.
+/var/www/.xinitrc  파일 없습니다.
+/var/www/.xsession  파일 없습니다.
+ 
+● 4.16 결과 : 양호
+#################################################################################
+========================================================================================
+4.16 END
+ 
+4.17 START
+#######   4.네트워크 서비스 - 4.17 불필요한 서비스   ############################
+---------------------------------------------------------------------------------
+■ 기준 : 불필요한 서비스가 사용되고 있지 않으면 양호
+■ 현황
+ 
+/etc/xinetd.d 내용
+--------------------
+불필요한 서비스가 존재하지 않습니다.
+ 
+/etc/xinetd.d 내용 
+------------------ 
+xinetd.d에 파일이 없습니다.
+● 4.17 결과 : 양호
+#################################################################################
+========================================================================================
+4.17 END
+ 
+5.01 START
+#######   5.감사 및 로그관리 - 5.1 su 로그 설정   ###############################
+---------------------------------------------------------------------------------
+■ 기준 : /etc/login.defs 파일에 SULOG_FILE /var/log/sulog 하고 /etc/syslog.conf 파일에 auth.notice /var/adm/sulog가 설정되어 있으면 양호
+■ 현황
+ 
+☞/etc/login.defs  파일 점검
+/etc/login.defs 파일에 sulog 설정이 없습니다
+ 
+/etc/syslog.conf 파일이 없습니다.
+ 
+☞/etc/rsyslog.conf  파일 점검
+/etc/rsyslog.conf 파일에 sulog 설정이 없습니다
+ 
+● 5.01 결과 : 취약
+#################################################################################
+========================================================================================
+5.01 END
+ 
+5.02 START
+#######   5.감사 및 로그관리 - 5.2 Inetd Services 로그설정(Solaris Only)   ######
+---------------------------------------------------------------------------------
+■ 기준 : 해당사항 없음.
+■ 현황
+● 5.02 결과 : N/A
+#################################################################################
+========================================================================================
+5.02 END
+ 
+5.03 START
+#######   5.감사 및 로그관리 - 5.3 syslog 설정   ################################
+---------------------------------------------------------------------------------
+■ 기준 : syslog 에 중요 로그 정보에 대한 설정이 되어 있을 경우 양호
+■ 현황
+ 
+☞ syslog 프로세스
+message+     681       1  0  2023 ?        00:00:04 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+syslog    182097       1  0  2023 ?        00:00:02 /usr/sbin/rsyslogd -n -iNONE
+ 
+☞ 시스템 로깅 설정
+/etc/syslog.conf 파일 없습니다.
+
+
+
+
+
+
+module(load="imklog" permitnonkernelfacility="on")
+
+
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+$RepeatedMsgReduction on
+
+$FileOwner syslog
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+$Umask 0022
+$PrivDropToUser syslog
+$PrivDropToGroup syslog
+
+$WorkDirectory /var/spool/rsyslog
+
+$IncludeConfig /etc/rsyslog.d/*.conf
+ 
+● 5.03 결과 : 취약
+#################################################################################
+========================================================================================
+5.03 END
+ 
+6.01 START
+#######   6.패치관리- 6.1 Sendmail 패치   #######################################
+---------------------------------------------------------------------------------
+■ 기준 : sendmail 버전이 8.13.8 이상이면 양호
+■ 현황
+ 
+① Sendmail 프로세스 확인
+Sendmail 서비스가 비실행중입니다.
+ 
+ 
+② sendmail 버전확인
+/etc/mail/sendmail.cf 파일 없습니다.
+ 
+● 6.01 결과 : 양호
+#################################################################################
+========================================================================================
+6.01 END
+ 
+6.02 START
+#######   6.패치관리- 6.2 DNS 패치   ############################################
+---------------------------------------------------------------------------------
+■ 기준 : DNS Cache Poisoning 취약점 존재할 경우 취약, 양호한 버전을 사용하고 있을 경우에 양호(8.4.6, 8.4.7, 9.2.8-P1, 9.3.4-P1, 9.4.1-P1, 9.5.0a6)
+■ 현황
+ 
+DNS가 비실행중입니다 
+ 
+● 6.02 결과 : 양호
+#################################################################################
+========================================================================================
+6.02 END
+ 
+6.03 START
+#######   6.패치관리- 6.3 시스템 패치   #########################################
+---------------------------------------------------------------------------------
+■ 기준 : 패치 적용 정책을 수립하여 주기적으로 패치를 관리하고 있을 경우에 양호
+■ 현황
+ 
+--------linux version------
+Linux pv-pro-cs-was 5.4.0-99-generic #112-Ubuntu SMP Thu Feb 3 13:50:55 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+--------------------------
+ 
+● 6.03 결과 : 수동
+#################################################################################
+========================================================================================
+6.03 END

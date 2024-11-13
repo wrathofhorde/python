@@ -1,0 +1,16 @@
+SNP =  "S&P"
+QQQ =  "QQQ"
+NIFTY_50 =  "NIFTY50"
+NAME = "name"
+UNIT_PRICE = "unit_price"
+QUANTITY = "quantity"
+TOTAL_PRICE = "total_price"
+RATIO = "ratio"
+CURRENT_RATIO = "current_ratio"
+TARGET_RATIO = "target_ratio"
+PERCENT_POINT = 'percent_point'
+ASSIGNMENT = 'assignment'
+BUY = 'buy'
+BALANCE_AFTER_BUY = "balance_after_buy"
+RATIO_AFTER_BUY = "ratio_after_buy"
+PURCHASE_PRICE = "purchase_price"
