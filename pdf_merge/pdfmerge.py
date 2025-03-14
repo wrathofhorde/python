@@ -1,14 +1,18 @@
+from icecream import ic
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
 from merger import read_filenames, merge_pdfs
 
+ic.disable()
 
 def select_dir():
     tk.dirname = filedialog.askdirectory(
         initialdir="path",
         mustexist=True
     )
+
+    ic(tk.dirname)
 
     text = tk.dirname if len(tk.dirname) else "Not selected"
     lbl_dir.configure(text=text)
@@ -17,7 +21,7 @@ def select_dir():
 def merge():
     tk.output = inp_file.get()
 
-    if len(tk.output) == 0:
+    if len(tk.output) < 5:
         messagebox.showerror("에러", "저장할 파일이름이 누락되었습니다.")
         return
     
@@ -28,7 +32,7 @@ def merge():
 
     files = read_filenames(tk.dirname)
     files.sort()
-    # print(files)
+    ic(files)
     merge_pdfs(tk.dirname, files, tk.output)
 
     btn_merge.config(state="normal")
@@ -36,7 +40,7 @@ def merge():
 
 tk = Tk()
 
-tk.title("PDF Merger")
+tk.title("PDF Merger 1.1")
 
 tk.geometry("480x120+400+400")
 tk.resizable(False, False)
