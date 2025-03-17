@@ -22,7 +22,7 @@ for offset in range(diff.days):
         prices[day] = list
         print(f"{day}: {list}")
     else:
-        print(f"{day} skipped")
+        print(f"{day}: {prices[day]}")
 
 handledic.write(prices)
 
