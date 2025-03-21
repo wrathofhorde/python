@@ -7,8 +7,8 @@ filename = "average_prices.csv"
 def write(prices, name = None):
   name = filename if name is None else name
 
-  with open(name, 'w') as file:
-    writer = csv.writer(file)
+  with open(name, 'w', newline="") as file:
+    writer = csv.writer(file, delimiter="\t")
     writer.writerows(prices)
 
 
