@@ -34,7 +34,7 @@ def select_files_to_be_removed(org_list, encoded_list):
 
     for org in org_list:
         name = org[0: -4]
-        for encoded in encoded_files:
+        for encoded in encoded_list:
             if name in encoded:
                 removed.append(org)
                 break
@@ -63,11 +63,14 @@ def rename_files(path, files):
         new_name = f"{dir}[{name[0:-3]}].{ext}"
         os.rename(dir + file, new_name)
 
-if __name__ == "__main__":
-    path = "C:/Users/wrath/Videos/test"
+def remove_and_rename(path):
     mp4_files = select_mp4(path)
     encoded_files = select_encoded_files(mp4_files)
     original_files = select_original_files(mp4_files)
     to_be_removed = select_files_to_be_removed(original_files, encoded_files)
     remove_files(path, to_be_removed)
     rename_files(path, encoded_files)
+
+if __name__ == "__main__":
+    path = "C:/Users/wrath/Videos/test"
+    remove_and_rename(path)
