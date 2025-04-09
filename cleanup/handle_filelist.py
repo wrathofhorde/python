@@ -3,7 +3,7 @@ import re
 import time
 from icecream import ic
 
-# ic.disable()
+ic.disable()
 
 def is_mp4_file(filename):
     return filename.endswith("mp4")
@@ -76,7 +76,9 @@ if __name__ == "__main__":
     # path = "C:/Users/wrath/Videos/test"
     path = "/Volumes/5T/New"
     start_time = time.time()
+    print(f"시작시간: {start_time:.1f} 초")
     remove_and_rename(path)
     end_time = time.time()
+    print(f"종료시간: {end_time:.1f} 초")
     exec_time = end_time - start_time
     print(f"실행시간: {exec_time:.1f} 초")
