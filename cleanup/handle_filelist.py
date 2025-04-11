@@ -1,8 +1,9 @@
 import os
 import re
+import time
 from icecream import ic
 
-# ic.disable()
+ic.disable()
 
 def is_mp4_file(filename):
     return filename.endswith("mp4")
@@ -43,7 +44,7 @@ def select_files_to_be_removed(org_list, encoded_list):
     return removed
 
 def remove_files(path, files):
-    dir = path if path[-1] is "/" else path + "/"
+    dir = path if path[-1] == "/" else path + "/"
     ic(dir)
 
     fullnames = []
@@ -55,7 +56,7 @@ def remove_files(path, files):
         os.remove(name)
 
 def rename_files(path, files):
-    dir = path if path[-1] is "/" else path + "/"
+    dir = path if path[-1] == "/" else path + "/"
     ic(dir)
 
     for file in files:
@@ -72,5 +73,12 @@ def remove_and_rename(path):
     rename_files(path, encoded_files)
 
 if __name__ == "__main__":
-    path = "C:/Users/wrath/Videos/test"
+    # path = "C:/Users/wrath/Videos/test"
+    path = "/Volumes/5T/New"
+    start_time = time.time()
+    print(f"시작시간: {start_time:.1f} 초")
     remove_and_rename(path)
+    end_time = time.time()
+    print(f"종료시간: {end_time:.1f} 초")
+    exec_time = end_time - start_time
+    print(f"실행시간: {exec_time:.1f} 초")
