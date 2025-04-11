@@ -1,77 +1,43 @@
-import duration
-import handledic
-import handlecsv
-import closingprice
-from datetime import timedelta
-from prettytable import PrettyTable
+import pandas as pd
+import tkinter as tk
+import seaborn as sns
+from calculation import calc
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from dateutil.relativedelta import relativedelta
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-days = duration.days()
-prices = handledic.read()
-today = days.today
-firstday = days.firstday
-startday = days.startday
-endday = days.endday
-diff = today - startday
+prices = calc()
+prices.get_closingprice()
 
-for offset in range(diff.days):
-    day = days.tostring(startday + timedelta(days=offset))
-    value = prices.get(day)
+for idx in range(len(prices.btc)):
+    prices.btc[idx] =int(prices.btc[idx])
+    prices.eth[idx] =int(prices.eth[idx])
+    prices.xrp[idx] =int(prices.xrp[idx])
 
-    if value is None or len(value) != 3:
-        list = closingprice.get(day)
-        prices[day] = list
-        print(f"{day}: {list}")
-    else:
-        print(f"{day}: {prices[day]}")
+# root = tk.Tk()
+# root.title("일년 평균")
+# root.geometry("600x500")
 
-handledic.write(prices)
+plt.plot(prices.days, prices.btc, label='BTC', color='blue', linewidth=1)
 
-csvlist = []
-btc = eth = xrp = 0
-diff = endday - startday
-sum_of_days = diff.days + 1
+xticks = [
+    prices.days[0],
+    prices.days[0] + relativedelta(month=3),
+    prices.days[0] + relativedelta(month=6),
+    prices.days[0] + relativedelta(month=9),
+]
 
-for offset in range(sum_of_days):
-    day = days.tostring(startday + timedelta(days=offset))
-    value = prices.get(day)
-    btc += value[0]
-    eth += value[1]
-    xrp += value[2]
-    value.insert(0, day)
-    csvlist.append(value)
+print(prices.days[0])
+print(prices.days[0] + relativedelta(month=3))
 
-btc /= sum_of_days
-eth /= sum_of_days
-xrp /= sum_of_days
-btc = format(int(round(btc, 0)), ",d")
-eth = format(int(round(eth, 0)), ",d")
-xrp = format(int(round(xrp, 0)), ",d")
+ax = plt.gca()
+ax.set_xticks(xticks)
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m"))  # 연도-월 형식
 
-csvlist.append(["average", btc, eth, xrp])
+# plt.title("Bitcoin", fontsize=14)
+# plt.xlabel("X 축", fontsize=12)
+# plt.ylabel("Y 축", fontsize=12)
+# plt.grid(True)  # 격자선 추가
 
-str_startday = days.tostring(startday)
-str_endday = days.tostring(endday)
-
-handlecsv.write(csvlist, f"{str_startday}-{str_endday}.csv")
-
-
-str_type = "Type"
-str_from = "From"
-str_to = "To"
-str_days = "Days"
-str_price = "Price"
-
-table = PrettyTable()
-table.field_names = [str_type, str_from, str_to, str_days, str_price]
-table.add_rows([
-    ["BTC", str_startday, str_endday, sum_of_days, btc],
-    ["ETH", str_startday, str_endday, sum_of_days, eth],
-    ["XRP", str_startday, str_endday, sum_of_days, xrp]
-    ])
-
-table.align[str_price] = "r"
-
-print()
-print(table)
-print()
-input("Press any key to close....")
+plt.show()
