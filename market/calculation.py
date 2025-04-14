@@ -4,6 +4,7 @@ import handlecsv
 import closingprice
 from prettytable import PrettyTable
 from datetime import timedelta, datetime
+from dateutil.relativedelta import relativedelta
 
 class calc:
     def __init__(self):
@@ -11,6 +12,7 @@ class calc:
         self.eth = []
         self.xrp = []
         self.days = []
+        self.xticks = []
         self.avg_btc = None
         self.avg_eth = None
         self.avg_xrp = None
@@ -95,6 +97,14 @@ class calc:
         print()
         # input("Press any key to close....")
 
+    def get_xticks(self, durations):
+        ticks = []
+        for months in range(0, 13, durations):
+            ticks.append(self.startday + relativedelta(months=months))
+        
+        return ticks
+
 if __name__ == "__main__":
     c = calc()
     c.get_closingprice()
+    print(c.get_xticks())
