@@ -61,7 +61,7 @@ def draw_table(root, prices):
 
 
 root = tk.Tk()
-root.title("일년 평균")
+root.title("주요 자산 일년 가격 차트")
 root.geometry("1400x400")
 root.resizable(False, False)
 
