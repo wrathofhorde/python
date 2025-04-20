@@ -80,5 +80,5 @@ if __name__ == "__main__":
     remove_and_rename(path)
     end_time = time.time()
     print(f"종료시간: {end_time:.1f} 초")
-    exec_time = end_time - start_time
-    print(f"실행시간: {exec_time:.1f} 초")
+    exec_time = int(end_time - start_time)
+    print(f"실행시간: {exec_time // 60}분 {exec_time % 60}초")
