@@ -5,7 +5,7 @@ from icecream import ic
 from operator import itemgetter
 import matplotlib.pyplot as plot
 
-# ic.disable()
+ic.disable()
 
 PRECISION = 2
 
