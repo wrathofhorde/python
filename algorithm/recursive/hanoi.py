@@ -6,7 +6,9 @@ def hanoi(n, start, by, end):
         print(f"원반 {n}을 {start}에서 {end}로 이동")
         hanoi(n - 1, by, start, end)
 
-
-hanoi(2, "A", "B", "C")
-print("*" * 20)
-hanoi(3, "A", "B", "C")
+if __name__ == "__main__":
+    hanoi(2, "A", "B", "C")
+    print("*" * 20)
+    hanoi(3, "A", "B", "C")
+    print("*" * 20)
+    hanoi(4, "A", "B", "C")
