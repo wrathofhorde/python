@@ -8,12 +8,13 @@ import matplotlib.pyplot as plot
 PRECISION = 2
 
 def printUsageAndExit():
-  print('Usage: python3 rebalance.py deposit_amount json_file')
-  print('Example: python3 rebalance.py 100000 owns.json')
+  print('Usage: python3 balance.py deposit_amount json_file')
+  print('Example: python3 balance.py 100000 owns.json')
   exit(0)
 
 if __name__ == '__main__':
-  printUsageAndExit()
+  if len(sys.argv) != 3:
+    printUsageAndExit()
 
 try:
   deposit = int(sys.argv[1])
