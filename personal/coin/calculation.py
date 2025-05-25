@@ -42,7 +42,6 @@ class calc:
         self.prices = prices
         handledic.write(prices)
 
-        csvlist = []
         btc = eth = xrp = 0
         diff = endday - startday
         sum_of_days = diff.days + 1
@@ -54,7 +53,6 @@ class calc:
             eth += value[1]
             xrp += value[2]
             value.insert(0, day)
-            csvlist.append(value)
 
             self.days.append(datetime.strptime(value[0], "%Y-%m-%d"))
             self.btc.append(value[1])
@@ -68,8 +66,13 @@ class calc:
         eth = format(int(round(eth, 0)), ",d")
         xrp = format(int(round(xrp, 0)), ",d")
 
-        csvlist.append(["average", btc, eth, xrp])
-
+        max_btc = format(int(round(max(self.btc), 0)), ",d")
+        min_btc = format(int(round(min(self.btc), 0)), ",d")
+        max_eth = format(int(round(max(self.eth), 0)), ",d")
+        min_eth = format(int(round(min(self.eth), 0)), ",d")
+        max_xrp = format(int(round(max(self.xrp), 0)), ",d")
+        min_xrp = format(int(round(min(self.xrp), 0)), ",d")
+        
         str_startday = days.tostring(startday)
         str_endday = days.tostring(endday)
 
@@ -78,16 +81,20 @@ class calc:
         str_to = "To"
         str_days = "Days"
         str_price = "12개월평균"
+        str_min = "최저가"
+        str_max = "최고가"
 
-        self.field_names = [str_type, str_from, str_to, str_days, str_price]
-        self.avg_btc = ["BTC", str_startday, str_endday, sum_of_days, btc]
-        self.avg_eth = ["ETH", str_startday, str_endday, sum_of_days, eth]
-        self.avg_xrp = ["XRP", str_startday, str_endday, sum_of_days, xrp]
+        self.field_names = [str_type, str_from, str_to, str_days, str_price, str_min, str_max]
+        self.avg_btc = ["BTC", str_startday, str_endday, sum_of_days, btc, min_btc, max_btc]
+        self.avg_eth = ["ETH", str_startday, str_endday, sum_of_days, eth, min_eth, max_eth]
+        self.avg_xrp = ["XRP", str_startday, str_endday, sum_of_days, xrp, min_xrp, max_xrp]
 
         table = PrettyTable()
         table.field_names = self.field_names
         table.add_rows([self.avg_btc, self.avg_eth, self.avg_xrp])
         table.align[str_price] = "r"
+        table.align[str_min] = "r"
+        table.align[str_max] = "r"
 
         print()
         print(table)
