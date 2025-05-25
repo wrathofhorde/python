@@ -69,6 +69,5 @@ prices = calc()
 prices.get_closingprice()
 
 draw_chart(root, prices)
-# draw_table(root, prices)
 
 root.mainloop()

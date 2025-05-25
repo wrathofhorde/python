@@ -1,6 +1,5 @@
 import duration
 import handledic
-import handlecsv
 import closingprice
 from prettytable import PrettyTable
 from datetime import timedelta, datetime
@@ -74,13 +73,11 @@ class calc:
         str_startday = days.tostring(startday)
         str_endday = days.tostring(endday)
 
-        handlecsv.write(csvlist, f"{str_startday}-{str_endday}.csv")
-
         str_type = "Type"
         str_from = "From"
         str_to = "To"
         str_days = "Days"
-        str_price = "Price"
+        str_price = "12개월평균"
 
         self.field_names = [str_type, str_from, str_to, str_days, str_price]
         self.avg_btc = ["BTC", str_startday, str_endday, sum_of_days, btc]
@@ -107,4 +104,4 @@ class calc:
 if __name__ == "__main__":
     c = calc()
     c.get_closingprice()
-    print(c.get_xticks())
+    print(c.get_xticks(1))
