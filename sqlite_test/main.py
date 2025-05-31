@@ -1,19 +1,11 @@
 import handledic
-from db import Sqlite
 from icecream import ic
+from db import CoinPriceDb
 
 
 def main():
-  sqlite = Sqlite("prices.db")
-  sqlite.execute('''
-      CREATE TABLE IF NOT EXISTS major_coins (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        date TEXT UNIQUE,
-        btc INTEGER,
-        eth INTEGER,
-        xrp INTEGER
-      );
-  ''')
+  sqlite = CoinPriceDb("prices.db")
+  sqlite.create_major_coins_table()
 
   prices = handledic.read()
 
@@ -24,19 +16,14 @@ def main():
 
   ic(params)
 
-  insert_cursor = sqlite.excutemany(
-      "INSERT INTO major_coins (date, btc, eth, xrp) VALUES (?, ?, ?, ?);",
-      params
-  )
+  insert_cursor = sqlite.insert_major_coin_prices(params)
 
-  rows = sqlite.execute("SELECT date, btc, eth, xrp FROM major_coins;").fetchall()
-  count = sqlite.count("major_coins")
+  rows = sqlite.fetchall("SELECT date, btc, eth, xrp FROM major_coins;")
+  count = sqlite.count()
 
   ic(insert_cursor.lastrowid)
   ic(len(prices))
   ic(count)
-
-  sqlite.close()
 
   for row in rows:
      date = row["date"]
@@ -48,6 +35,19 @@ def main():
         ic(f"{date} eth error")
      if row['xrp'] != int(xrp):
         ic(f"{date} xrp error")
+
+  ic("값 비교 완료")
+  
+  start_date = "2025-05-14"
+  end_date = "2025-05-30"
+
+  ic(sqlite.select_major_coins_prices(start_date, end_date))
+  ic(sqlite.select_last_update_major_coins())
+  ic(sqlite.select_prices_at("2025-04-21"))
+  ic(sqlite.select_prices_at("2021-04-21"))
+  
+
+  sqlite.close()
 
 
 if __name__ == "__main__":
