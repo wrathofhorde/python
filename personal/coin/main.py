@@ -7,12 +7,7 @@ from calculation import calc
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-def draw_chart(root, prices):
-    for idx in range(len(prices.btc)):
-        prices.btc[idx] = int(prices.btc[idx])
-        prices.eth[idx] = int(prices.eth[idx])
-        prices.xrp[idx] = int(prices.xrp[idx])
-
+def draw_chart(root, prices: calc):
     xticks = prices.get_xticks(3)
     xtick_labels = []
     for tick in xticks:
@@ -24,26 +19,26 @@ def draw_chart(root, prices):
     canvas.get_tk_widget().pack(side=tk.TOP)
 
     ax.grid(True)
-    ax.plot(prices.days, prices.btc, label="BTC", color="blue", linewidth=1)
+    ax.plot(prices.date, prices.btc, label="BTC", color="blue", linewidth=1)
     ax.set_title("BTC")
     ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
     ax = fig.add_subplot(132)
     canvas = FigureCanvasTkAgg(fig, master=root)
     ax.grid(True)
-    ax.plot(prices.days, prices.eth, label="ETH", color="green", linewidth=1)
+    ax.plot(prices.date, prices.eth, label="ETH", color="green", linewidth=1)
     ax.set_title("ETH")
     ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
     ax = fig.add_subplot(133)
     canvas = FigureCanvasTkAgg(fig, master=root)
     ax.grid(True)
-    ax.plot(prices.days, prices.xrp, label="XRP", color="magenta", linewidth=1)
+    ax.plot(prices.date, prices.xrp, label="XRP", color="magenta", linewidth=1)
     ax.set_title("XRP")
     ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
 
-def draw_table(root, prices):
+def draw_table(root, prices:calc):
     column_title = prices.field_names
     column_width = [100, 100, 100, 100, 200]
     column_anchor = ["center", "center", "center", "center", "e"]

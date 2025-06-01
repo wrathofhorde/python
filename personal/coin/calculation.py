@@ -2,7 +2,6 @@ import closingprice
 
 from icecream import ic
 from db import CoinPriceDb
-from prettytable import PrettyTable
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
 
@@ -72,19 +71,19 @@ class calc:
 
         ic(recent_prices)
         self.sqlite.insert_major_coin_prices(recent_prices)
-        start_day = self.days.oneyearago
-        end_day = self.days.yesterday
+        self.startday = self.days.oneyearago
+        self.endday = self.days.yesterday
 
         # save in tuple
         (
             self.date, self.btc, self.eth, self.xrp
-            ) = self.sqlite.select_major_coins_data(start_day, end_day)
+            ) = self.sqlite.select_major_coins_data(self.startday, self.endday)
         # save in tuple   
         (
             self.min_btc, self.max_btc, self.avg_btc,
             self.min_eth, self.max_eth, self.avg_eth,
             self.min_xrp, self.max_xrp, self.avg_xrp,
-            ) = self.sqlite.select_major_coins_min_max_avg(start_day, end_day)
+            ) = self.sqlite.select_major_coins_min_max_avg(self.startday, self.endday)
 
     def get_xticks(self, durations):
         ticks = []

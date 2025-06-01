@@ -99,7 +99,7 @@ class CoinPriceDb(Sqlite):
 		rows = super().fetchall(query, (start_day, end_day))
 
 		if rows:
-			date = [row["date"] for row in rows]
+			date = [datetime.strptime(row["date"], "%Y-%m-%d") for row in rows]
 			btc = [row["btc"] for row in rows]
 			eth = [row["eth"] for row in rows]
 			xrp = [row["xrp"] for row in rows]
