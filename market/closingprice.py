@@ -12,7 +12,7 @@ def get(day):
   url = "https://api.upbit.com/v1/candles/minutes/1?market=%s&to=%s"
 
   for market in markets:
-    time.sleep(1)
+    time.sleep(0.5)
     ic(url % (market, date))
     res = requests.get(url % (market, date), headers=headers)
 
