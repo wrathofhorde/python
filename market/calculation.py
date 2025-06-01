@@ -2,10 +2,12 @@ import duration
 import handledic
 import handlecsv
 import closingprice
+from icecream import ic
 from prettytable import PrettyTable
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
 
+# ic.disable()
 class calc:
     def __init__(self):
         self.btc = []
@@ -17,6 +19,9 @@ class calc:
         self.avg_eth = None
         self.avg_xrp = None
         self.field_names = None
+
+    def closingprice(self):
+        pass
 
     def get_closingprice(self):
         days = duration.days()
@@ -107,4 +112,4 @@ class calc:
 if __name__ == "__main__":
     c = calc()
     c.get_closingprice()
-    print(c.get_xticks())
+    ic(c.get_xticks(3))

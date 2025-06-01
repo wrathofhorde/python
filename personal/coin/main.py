@@ -1,7 +1,9 @@
 import tkinter as tk
-from tkinter import ttk
-from calculation import calc
 import matplotlib.pyplot as plt
+
+from tkinter import ttk
+from db import CoinPriceDb
+from calculation import calc
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
@@ -60,12 +62,15 @@ def draw_table(root, prices):
     tree.pack(side="left")
 
 
+sqlite = CoinPriceDb("prices.db")
+sqlite.create_major_coins_table()
+
 root = tk.Tk()
 root.title("주요 자산 일년 가격 차트")
 root.geometry("1400x400")
 root.resizable(False, False)
 
-prices = calc()
+prices = calc(sqlite)
 prices.get_closingprice()
 
 draw_chart(root, prices)

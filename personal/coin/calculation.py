@@ -1,105 +1,90 @@
-import duration
-import handledic
 import closingprice
+
+from icecream import ic
+from db import CoinPriceDb
 from prettytable import PrettyTable
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
 
+dateformat: str = "%Y-%m-%d"
+class days:
+    def __init__(self, sqlite: CoinPriceDb):
+        self.today = datetime.today()
+        self.today = self.today.replace(hour=0, minute=0, second=0, microsecond=0)
+        self.yesterday = self.today - timedelta(days=1)
+        self.oneyearago = self.yesterday - timedelta(days=365)
+        self.last_update_date = self.get_last_update_day(sqlite)
+
+    def tostring(self, day:datetime) -> str:
+        return day.strftime(dateformat)
+    
+    def get_last_update_day(self, sqlite: CoinPriceDb) -> datetime:
+        self.last_update_date = datetime.strptime(
+            sqlite.select_last_update_major_coins(), dateformat
+            )
+        ic(self.last_update_date)
+
+        oneday = timedelta(days = 1)
+        self.recent_start_day = self.last_update_date + oneday
+        self.recent_end_day = self.yesterday
+        ic.enable()
+        ic(self.recent_start_day)
+        ic(self.recent_end_day)
+        ic(self.last_update_date)
+        ic(self.oneyearago)
+
 class calc:
-    def __init__(self):
+    def __init__(self, sqlite: CoinPriceDb):
         self.btc = []
         self.eth = []
         self.xrp = []
-        self.days = []
+        self.date = []
         self.xticks = []
-        self.avg_btc = None
-        self.avg_eth = None
-        self.avg_xrp = None
+        self.min_btc: int = 0
+        self.max_btc: int = 0
+        self.avg_btc: int = 0
+        self.min_eth: int = 0
+        self.max_eth: int = 0
+        self.avg_eth: int = 0
+        self.min_xrp: int = 0
+        self.max_xrp: int = 0
+        self.avg_xrp: int = 0
+        self.sqlite: CoinPriceDb = sqlite
         self.field_names = None
+        self.days = days(sqlite)
 
     def get_closingprice(self):
-        days = duration.days()
-        prices = handledic.read()
-        today = days.today
-        startday = days.startday
-        endday = days.endday
-        diff = today - startday
+        recent_start_day = self.days.recent_start_day
+        recent_end_day = self.days.recent_end_day
 
-        self.startday = startday
-        self.endday = endday
+        recent_prices = []
+        oneday = timedelta(days = 1)
 
-        for offset in range(diff.days):
-            day = days.tostring(startday + timedelta(days=offset))
-            value = prices.get(day)
+        while recent_start_day <= recent_end_day:
+            day : str = self.days.tostring(recent_start_day)
+            [btc, eth, xrp] = closingprice.get(day)
+            btc = int(btc)
+            eth = int(eth)
+            xrp = int(xrp)
+            price = [day, btc, eth, xrp]
+            recent_prices.append(price)
+            recent_start_day += oneday
 
-            if value is None or len(value) != 3:
-                list = closingprice.get(day)
-                prices[day] = list
-                print(f"{day}: {list}")
-            else:
-                print(f"{day}: {prices[day]}")
+        ic(recent_prices)
+        self.sqlite.insert_major_coin_prices(recent_prices)
+        start_day = self.days.oneyearago
+        end_day = self.days.yesterday
 
-        self.prices = prices
-        handledic.write(prices)
-
-        btc = eth = xrp = 0
-        diff = endday - startday
-        sum_of_days = diff.days + 1
-
-        for offset in range(sum_of_days):
-            day = days.tostring(startday + timedelta(days=offset))
-            value = prices.get(day)
-            btc += value[0]
-            eth += value[1]
-            xrp += value[2]
-            value.insert(0, day)
-
-            self.days.append(datetime.strptime(value[0], "%Y-%m-%d"))
-            self.btc.append(value[1])
-            self.eth.append(value[2])
-            self.xrp.append(value[3])
-
-        btc /= sum_of_days
-        eth /= sum_of_days
-        xrp /= sum_of_days
-        btc = format(int(round(btc, 0)), ",d")
-        eth = format(int(round(eth, 0)), ",d")
-        xrp = format(int(round(xrp, 0)), ",d")
-
-        max_btc = format(int(round(max(self.btc), 0)), ",d")
-        min_btc = format(int(round(min(self.btc), 0)), ",d")
-        max_eth = format(int(round(max(self.eth), 0)), ",d")
-        min_eth = format(int(round(min(self.eth), 0)), ",d")
-        max_xrp = format(int(round(max(self.xrp), 0)), ",d")
-        min_xrp = format(int(round(min(self.xrp), 0)), ",d")
-        
-        str_startday = days.tostring(startday)
-        str_endday = days.tostring(endday)
-
-        str_type = "Type"
-        str_from = "From"
-        str_to = "To"
-        str_days = "Days"
-        str_price = "12개월평균"
-        str_min = "최저가"
-        str_max = "최고가"
-
-        self.field_names = [str_type, str_from, str_to, str_days, str_price, str_min, str_max]
-        self.avg_btc = ["BTC", str_startday, str_endday, sum_of_days, btc, min_btc, max_btc]
-        self.avg_eth = ["ETH", str_startday, str_endday, sum_of_days, eth, min_eth, max_eth]
-        self.avg_xrp = ["XRP", str_startday, str_endday, sum_of_days, xrp, min_xrp, max_xrp]
-
-        table = PrettyTable()
-        table.field_names = self.field_names
-        table.add_rows([self.avg_btc, self.avg_eth, self.avg_xrp])
-        table.align[str_price] = "r"
-        table.align[str_min] = "r"
-        table.align[str_max] = "r"
-
-        print()
-        print(table)
-        print()
-        # input("Press any key to close....")
+        # save in tuple
+        (
+            self.date, self.btc, self.eth, self.xrp
+            ) = self.sqlite.select_major_coins_data(start_day, end_day)
+        # save in tuple   
+        (
+            self.min_btc, self.max_btc, self.avg_btc,
+            self.min_eth, self.max_eth, self.avg_eth,
+            self.min_xrp, self.max_xrp, self.avg_xrp,
+            ) = self.sqlite.select_major_coins_min_max_avg(start_day, end_day)
 
     def get_xticks(self, durations):
         ticks = []
@@ -109,6 +94,9 @@ class calc:
         return ticks
 
 if __name__ == "__main__":
-    c = calc()
+    s = CoinPriceDb("prices.db")
+    s.create_major_coins_table()
+
+    c = calc(s)
     c.get_closingprice()
-    print(c.get_xticks(1))
+    # print(c.get_xticks(1))
