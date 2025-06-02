@@ -1,12 +1,13 @@
 import tkinter as tk
+import matplotlib.pyplot as plt
+
 from tkinter import ttk
 from db import CoinPriceDb;
-from calculation import calc
-import matplotlib.pyplot as plt
+from calculation import Calc
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-def draw_chart(root, prices):
+def draw_chart(root, prices: Calc):
 	for idx in range(len(prices.btc)):
 		prices.btc[idx] = int(prices.btc[idx])
 		prices.eth[idx] = int(prices.eth[idx])
@@ -23,21 +24,21 @@ def draw_chart(root, prices):
 	canvas.get_tk_widget().pack(side=tk.TOP)
 
 	ax.grid(True)
-	ax.plot(prices.days, prices.btc, label="BTC", color="blue", linewidth=1)
+	ax.plot(prices.date, prices.btc, label="BTC", color="blue", linewidth=1)
 	ax.set_title("BTC")
 	ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
 	ax = fig.add_subplot(132)
 	canvas = FigureCanvasTkAgg(fig, master=root)
 	ax.grid(True)
-	ax.plot(prices.days, prices.eth, label="ETH", color="green", linewidth=1)
+	ax.plot(prices.date, prices.eth, label="ETH", color="green", linewidth=1)
 	ax.set_title("ETH")
 	ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
 	ax = fig.add_subplot(133)
 	canvas = FigureCanvasTkAgg(fig, master=root)
 	ax.grid(True)
-	ax.plot(prices.days, prices.xrp, label="XRP", color="magenta", linewidth=1)
+	ax.plot(prices.date, prices.xrp, label="XRP", color="magenta", linewidth=1)
 	ax.set_title("XRP")
 	ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
@@ -71,10 +72,11 @@ root.title("주요 자산 일년 가격 차트")
 root.geometry("1400x400")
 root.resizable(False, False)
 
-prices = calc()
-prices.get_closingprice()
+prices = Calc(sqlite)
+prices.closingprice()
 
 draw_chart(root, prices)
 # draw_table(root, prices)
+sqlite.close()
 
 root.mainloop()

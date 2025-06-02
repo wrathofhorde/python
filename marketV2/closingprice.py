@@ -16,12 +16,12 @@ def get(day):
 		ic(url % (market, date))
 		res = requests.get(url % (market, date), headers=headers)
 
-	if res.status_code == 200:
-		data = (res.json())[0]
-		ic(data)
-		trade_prices.append(data['trade_price'])
-	else:
-		ic(res)
+		if res.status_code == 200:
+			data = (res.json())[0]
+			ic(data)
+			trade_prices.append(data['trade_price'])
+		else:
+			ic(res)
 
 	return trade_prices
 

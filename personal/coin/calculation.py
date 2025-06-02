@@ -39,15 +39,6 @@ class calc:
         self.xrp = []
         self.date = []
         self.xticks = []
-        self.min_btc: int = 0
-        self.max_btc: int = 0
-        self.avg_btc: int = 0
-        self.min_eth: int = 0
-        self.max_eth: int = 0
-        self.avg_eth: int = 0
-        self.min_xrp: int = 0
-        self.max_xrp: int = 0
-        self.avg_xrp: int = 0
         self.sqlite: CoinPriceDb = sqlite
         self.field_names = None
         self.days = days(sqlite)
@@ -84,6 +75,8 @@ class calc:
             self.min_eth, self.max_eth, self.avg_eth,
             self.min_xrp, self.max_xrp, self.avg_xrp,
             ) = self.sqlite.select_major_coins_min_max_avg(self.startday, self.endday)
+        
+
 
     def get_xticks(self, durations):
         ticks = []

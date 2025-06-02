@@ -19,13 +19,13 @@ def get(day: datetime) -> list[Any]:
 		ic(url % (market, date))
 		res = requests.get(url % (market, date), headers=headers)
 
-	if res.status_code == 200:
-		data = (res.json())[0]
-		ic(data)
-		trade_prices.append(data['trade_price'])
-	else:
-		ic(res)
-		return []
+		if res.status_code == 200:
+			data = (res.json())[0]
+			ic(data)
+			trade_prices.append(data['trade_price'])
+		else:
+			ic(res)
+			return []
 
 	return trade_prices
 

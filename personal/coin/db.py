@@ -84,8 +84,7 @@ class CoinPriceDb(Sqlite):
 
 		if rows:
 			for row in rows:
-				data = (row["date"], row["btc"], row["eth"], row["xrp"])
-			prices.append(data)
+				prices.append([row["date"], row["btc"], row["eth"], row["xrp"]])
 
 		return prices
   
@@ -141,7 +140,7 @@ class CoinPriceDb(Sqlite):
 		lastupdate: str = result[key] if key in result.keys() else result[0]
 		return lastupdate
 
-	def select_major_coins_average_price(self, start_day: datetime, end_day: datetime, table: str = majorcoin_table, /) -> tuple[int]:
+	def select_major_coins_average_price(self, start_day: str, end_day: str, table: str = majorcoin_table, /) -> tuple[int]:
 		query: str = f'''
 			SELECT 
 			AVG(btc) AS avg_btc,
@@ -157,7 +156,7 @@ class CoinPriceDb(Sqlite):
 			int(round(result["avg_xrp"]))
 		)
 
-	def select_major_coins_min_max_avg(self, start_day: datetime, end_day: datetime, table: str = majorcoin_table, /) -> tuple[Any]:
+	def select_major_coins_min_max_avg(self, start_day: str, end_day: str, table: str = majorcoin_table, /) -> tuple[Any]:
 		query: str = f'''
 			SELECT 
 			AVG(btc) AS avg_btc, MAX(btc) AS max_btc, MIN(btc) AS min_btc,
