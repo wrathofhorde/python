@@ -2,6 +2,7 @@ from datetime import datetime
 
 from matplotlib.dates import relativedelta
 
+dbname: str = "market.sq3"
 dateformat: str = "%Y-%m-%d"
 
 def datetostr(date: datetime, format: str = dateformat, /) -> str:

@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 from tkinter import ttk
 from db import CoinPriceDb
 from calculation import calc
-from utils import datetostr, get_xticks
 from datetime import datetime
+from utils import get_xticks, dbname
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 def draw_chart(root, startday:datetime, endday:datetime, sqlite: CoinPriceDb, /):
-    (date, btc, eth, xrp) = sqlite.select_major_coins_data(datetostr(startday), datetostr(endday))
+    (date, btc, eth, xrp) = sqlite.select_major_coins_data(startday, endday)
     xticks = get_xticks(startday, 3)
     xtick_labels = []
     for tick in xticks:
@@ -60,7 +60,7 @@ def draw_table(root, prices:calc):
     tree.pack(side="left")
 
 
-sqlite = CoinPriceDb("prices.db")
+sqlite = CoinPriceDb(dbname)
 sqlite.create_major_coins_table()
 
 root = tk.Tk()

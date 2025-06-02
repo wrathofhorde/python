@@ -3,7 +3,7 @@ import closingprice
 from icecream import ic
 from duration import Days
 from db import CoinPriceDb
-from utils import datetostr
+from utils import datetostr, dbname
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
 
@@ -50,7 +50,7 @@ class calc:
 
 if __name__ == "__main__":
     ic.enable()
-    s = CoinPriceDb("prices.db")
+    s = CoinPriceDb(dbname)
     s.create_major_coins_table()
 
     c = calc(s)
