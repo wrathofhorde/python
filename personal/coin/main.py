@@ -4,11 +4,14 @@ import matplotlib.pyplot as plt
 from tkinter import ttk
 from db import CoinPriceDb
 from calculation import calc
+from utils import datetostr, get_xticks
+from datetime import datetime
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-def draw_chart(root, prices: calc):
-    xticks = prices.get_xticks(3)
+def draw_chart(root, startday:datetime, endday:datetime, sqlite: CoinPriceDb, /):
+    (date, btc, eth, xrp) = sqlite.select_major_coins_data(datetostr(startday), datetostr(endday))
+    xticks = get_xticks(startday, 3)
     xtick_labels = []
     for tick in xticks:
         xtick_labels.append(tick.strftime("%Y-%m"))
@@ -19,21 +22,21 @@ def draw_chart(root, prices: calc):
     canvas.get_tk_widget().pack(side=tk.TOP)
 
     ax.grid(True)
-    ax.plot(prices.date, prices.btc, label="BTC", color="blue", linewidth=1)
+    ax.plot(date, btc, label="BTC", color="blue", linewidth=1)
     ax.set_title("BTC")
     ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
     ax = fig.add_subplot(132)
     canvas = FigureCanvasTkAgg(fig, master=root)
     ax.grid(True)
-    ax.plot(prices.date, prices.eth, label="ETH", color="green", linewidth=1)
+    ax.plot(date, eth, label="ETH", color="green", linewidth=1)
     ax.set_title("ETH")
     ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
     ax = fig.add_subplot(133)
     canvas = FigureCanvasTkAgg(fig, master=root)
     ax.grid(True)
-    ax.plot(prices.date, prices.xrp, label="XRP", color="magenta", linewidth=1)
+    ax.plot(date, xrp, label="XRP", color="magenta", linewidth=1)
     ax.set_title("XRP")
     ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
@@ -68,6 +71,6 @@ root.resizable(False, False)
 prices = calc(sqlite)
 prices.get_closingprice()
 
-draw_chart(root, prices)
+draw_chart(root, prices.startday, prices.endday, sqlite)
 
 root.mainloop()

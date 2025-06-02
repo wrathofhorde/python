@@ -5,7 +5,6 @@ from typing import Any
 from icecream import ic
 from datetime import datetime
 
-ic.disable()
 
 def get(day: datetime) -> list[Any]:
 	date = day + "T15:00:00"
@@ -30,4 +29,5 @@ def get(day: datetime) -> list[Any]:
 	return trade_prices
 
 if __name__ == "__main__":
+	ic.enable()
 	print(get("2024-08-14"))
