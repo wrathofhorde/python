@@ -98,6 +98,10 @@ class Calc:
 		lastday = self.days.tostring(self.days.yesterday)
 		recent = self.sqlite.select_major_coins_prices(firstday, lastday)
 
+		# csv 파일에 저장되지 않은 최근 값 화면 출력
+		for price in recent:
+			print(price)
+		
 		table = PrettyTable()
 		table.field_names = field_names
 		table.add_rows([row_btc, row_eth, row_xrp])
