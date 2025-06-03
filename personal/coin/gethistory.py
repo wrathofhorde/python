@@ -12,9 +12,11 @@ def gethistory()->None:
 
     lastupdate = sqlite.select_last_update_major_coins()
     ic(lastupdate)
+    # 2021-01-01부터 시작하게 되면 하루를 더해야 해서 문제 발생
     lastupdate = lastupdate if lastupdate else "2020-12-31"
 
     oneday: timedelta = timedelta(days=1)
+    # 마지막 업데이트 날 다음 날부터 시작
     startday: datetime = strtodate(lastupdate) + oneday
     today = datetime.today()
     today = today.replace(hour=0, minute=0, second=0, microsecond=0)
