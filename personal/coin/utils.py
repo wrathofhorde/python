@@ -11,9 +11,10 @@ def datetostr(date: datetime, format: str = dateformat, /) -> str:
 def strtodate(date: str, format: str = dateformat, /) -> str:
     return datetime.strptime(date, format)
 
-def get_xticks(startday:datetime, durations: int, /):
+def get_xticks(startday:datetime, duration: int = 12, tickunit: int = 3, /):
 	ticks = []
-	for months in range(0, 13, durations):
-		ticks.append(startday + relativedelta(months))
+    # 1년 기준으로 12개월 후 포함을 위해 duration + 1
+	for months in range(0, duration + 1, tickunit):
+		ticks.append(startday + relativedelta(months=months))
 	
 	return ticks

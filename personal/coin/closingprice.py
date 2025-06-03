@@ -5,7 +5,7 @@ from typing import Any
 from icecream import ic
 from datetime import datetime
 
-
+ic.disable()
 def get(day: datetime) -> list[Any]:
 	date = day + "T15:00:00"
 	trade_prices = []

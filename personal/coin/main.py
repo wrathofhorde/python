@@ -11,7 +11,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def draw_chart(root, startday:datetime, endday:datetime, sqlite: CoinPriceDb, /):
     (date, btc, eth, xrp) = sqlite.select_major_coins_data(startday, endday)
-    xticks = get_xticks(startday, 3)
+    xticks = get_xticks(startday)
     xtick_labels = []
     for tick in xticks:
         xtick_labels.append(tick.strftime("%Y-%m"))
