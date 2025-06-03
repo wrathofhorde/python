@@ -6,7 +6,7 @@ from icecream import ic
 from datetime import datetime
 
 ic.disable()
-def get(day: datetime) -> list[Any]:
+def get(day: str) -> list[Any]:
 	date = day + "T15:00:00"
 	trade_prices = []
 	markets = ["KRW-BTC", "KRW-ETH", "KRW-XRP"]
