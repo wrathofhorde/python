@@ -34,10 +34,10 @@ class Days:
 
 
 if __name__ == "__main__":
+	ic.enable()
 	s = CoinPriceDb("prices.db")
 	d = Days(s)
 
-	ic.enable()
 	ic(d.today)
 	ic(d.last_update_date)
 	ic(d.tostring(d.yesterday))

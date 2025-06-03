@@ -2,7 +2,6 @@ import time
 import requests
 from icecream import ic
 
-ic.disable()
 
 def get(day):
 	date = day + "T15:00:00"
@@ -26,4 +25,5 @@ def get(day):
 	return trade_prices
 
 if __name__ == "__main__":
+	ic.enable()
 	print(get("2024-08-14"))

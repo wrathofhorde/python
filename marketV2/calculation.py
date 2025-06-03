@@ -7,9 +7,7 @@ from db import CoinPriceDb
 from prettytable import PrettyTable
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
-
-def add_comma(number):
-	return format(int(round(number, 0)), ",d")
+from utils import dbname, add_comma
 
 class Calc:
 	def __init__(self, sqlite: CoinPriceDb):
@@ -124,7 +122,7 @@ class Calc:
 
 if __name__ == "__main__":
 	ic.enable()
-	s = CoinPriceDb("prices.db")
+	s = CoinPriceDb(db_name=dbname)
 	c = Calc(s)
 	c.closingprice()
 	ic(c.get_xticks(3))

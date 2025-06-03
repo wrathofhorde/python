@@ -2,6 +2,7 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 
 from tkinter import ttk
+from utils import dbname
 from db import CoinPriceDb;
 from calculation import Calc
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -63,7 +64,7 @@ def draw_table(root, prices):
 
 
 
-sqlite = CoinPriceDb("prices.db")
+sqlite = CoinPriceDb(db_name=dbname)
 # 테이블이 이미 있으면, 테이블을 새로 생성하지 않음
 sqlite.create_major_coins_table()
 
