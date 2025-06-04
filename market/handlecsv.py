@@ -5,7 +5,7 @@ from icecream import ic
 filename = "average_prices.csv"
 
 def write(prices, name = None):
-	one else name
+	name = filename if name is None else name
 
 	with open(name, 'w', newline="") as file:
 		writer = csv.writer(file, delimiter="\t")

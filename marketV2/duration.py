@@ -2,6 +2,8 @@ from icecream import ic
 from db import CoinPriceDb
 from datetime import datetime, timedelta
 
+from utils import datetostr, strtodate
+
 dateformat: str = "%Y-%m-%d"
 
 class Days:
@@ -20,14 +22,8 @@ class Days:
 		)
 		self.get_last_update_day(sqlite)
 
-	def tostring(self, day: datetime) -> str:
-		return day.strftime(dateformat)
-	
 	def get_last_update_day(self, sqlite: CoinPriceDb) -> None:
-		last_update_date = datetime.strptime(
-			sqlite.select_last_update_major_coins(), dateformat
-			)
-
+		last_update_date = strtodate(sqlite.select_last_update_major_coins())
 		oneday = timedelta(days = 1)
 		self.recent_start_day = last_update_date + oneday
 		self.recent_end_day = self.yesterday
@@ -40,7 +36,7 @@ if __name__ == "__main__":
 
 	ic(d.today)
 	ic(d.last_update_date)
-	ic(d.tostring(d.yesterday))
-	ic(d.tostring(d.firstday))
+	ic(datetostr(d.yesterday))
+	ic(datetostr(d.firstday))
 	ic(d.startday)
 	ic(d.endday)

@@ -7,18 +7,21 @@ from db import CoinPriceDb
 from prettytable import PrettyTable
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
-from utils import dbname, add_comma
+from utils import dbname, add_comma, strtodate, datetostr
 
 class Calc:
 	def __init__(self, sqlite: CoinPriceDb):
-		self.btc = []
-		self.eth = []
-		self.xrp = []
-		self.date = []
 		self.xticks = []
 		self.sqlite = sqlite
 		self.field_names = None
 
+	@property
+	def startday(self):
+		return self.days.startday
+	
+	@property
+	def endday(self):
+		return self.days.endday
 
 	def closingprice(self):
 		days = Days(self.sqlite)
@@ -30,7 +33,7 @@ class Calc:
 		recent_prices:list[Any] = []
 
 		while recent_start_day <= recent_end_day:
-			day: str = days.tostring(recent_start_day)
+			day: str = strtodate(recent_start_day)
 			[btc, eth, xrp] = closingprice.get(day)
 			recent_prices.append(
 				[day, int(round(btc)), int(round(eth)), int(round(xrp))]
@@ -39,8 +42,8 @@ class Calc:
 
 		self.sqlite.insert_major_coin_prices(recent_prices)
 
-		str_startday = days.tostring(days.startday)
-		str_endday = days.tostring(days.endday)
+		str_startday = datetostr(days.startday)
+		str_endday = datetostr(days.endday)
 
 		(
             min_btc, max_btc, avg_btc,
@@ -49,6 +52,11 @@ class Calc:
             ) = self.sqlite.select_major_coins_min_max_avg(str_startday, str_endday)
 		
 		csvlist = self.sqlite.select_major_coins_prices(str_startday, str_endday)
+
+		for price in csvlist:
+			price[1] = add_comma(price[1])
+			price[2] = add_comma(price[2])
+			price[3] = add_comma(price[3])
 
 		csvlist.append(
 			["average", add_comma(avg_btc), add_comma(avg_eth), add_comma(avg_xrp)]
@@ -74,26 +82,26 @@ class Calc:
 		field_names = [
 			str_type, 
 			str_from, str_to, str_days, 
-			str_avg, str_min, str_max
+			str_min, str_max, str_avg, 
 		]
 		row_btc = [
 			"BTC", 
 			str_startday, str_endday, sum_of_days, 
-			add_comma(avg_btc), add_comma(min_btc), add_comma(max_btc)
+			add_comma(min_btc), add_comma(max_btc), add_comma(avg_btc),
 		]
 		row_eth = [
 			"ETH", 
 			str_startday, str_endday, sum_of_days, 
-			add_comma(avg_eth), add_comma(min_eth), add_comma(max_eth)
+			add_comma(min_eth), add_comma(max_eth), add_comma(avg_eth),
 		]
 		row_xrp = [
 			"XRP", 
 			str_startday, str_endday, sum_of_days, 
-			add_comma(avg_xrp), add_comma(min_xrp), add_comma(max_xrp)
+			add_comma(min_xrp), add_comma(max_xrp), add_comma(avg_xrp),
 		]
 
-		firstday = self.days.tostring(self.days.endday + oneday)
-		lastday = self.days.tostring(self.days.yesterday)
+		firstday = datetostr(self.days.endday + oneday)
+		lastday = datetostr(self.days.yesterday)
 		recent = self.sqlite.select_major_coins_prices(firstday, lastday)
 
 		# csv 파일에 저장되지 않은 최근 값 화면 출력
@@ -111,14 +119,6 @@ class Calc:
 		print(table)
 		print()
 
-		(self.date, self.btc, self.eth, self.xrp) = self.sqlite.select_major_coins_data(str_startday, str_endday)
-
-	def get_xticks(self, durations):
-		ticks = []
-		for months in range(0, 13, durations):
-			ticks.append(self.days.startday + relativedelta(months=months))
-		
-		return ticks
 
 if __name__ == "__main__":
 	ic.enable()
