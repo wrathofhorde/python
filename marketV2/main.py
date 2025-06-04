@@ -42,8 +42,8 @@ def draw_chart(root, startday: datetime, endday: datetime, sqlite: CoinPriceDb):
 	ax.set_xticks(ticks=xticks, labels=xtick_labels)
 
 
-def draw_table(root, prices):
-	column_title = prices.field_names
+def draw_table(root, startday: datetime, endday: datetime, fieldnames: list[str]):
+	column_title = fieldnames
 	column_width = [100, 100, 100, 100, 200]
 	column_anchor = ["center", "center", "center", "center", "e"]
 
@@ -54,7 +54,14 @@ def draw_table(root, prices):
 			column_title[idx], width=column_width[idx], anchor=column_anchor[idx]
 		)
 
-	data = [prices.avg_btc, prices.avg_eth, prices.avg_xrp]
+	(
+		min_btc, max_btc, avg_btc,
+		min_eth, max_eth, avg_eth,
+		min_xrp, max_xrp, avg_xrp,
+		) = sqlite.select_major_coins_min_max_avg(startday, endday)
+		
+
+	data = [avg_btc, avg_eth, avg_xrp]
 	for item in data:
 		tree.insert("", "end", values=item)
 
@@ -74,7 +81,7 @@ calc = Calc(sqlite)
 calc.closingprice()
 
 draw_chart(root, calc.startday, calc.endday, sqlite)
-# draw_table(root, prices)
+# draw_table(root, calc.fieldnames)
 sqlite.close()
 
 root.mainloop()

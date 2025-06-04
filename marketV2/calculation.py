@@ -22,6 +22,10 @@ class Calc:
 	@property
 	def endday(self):
 		return self.days.endday
+	
+	@property
+	def fieldnames(self):
+		return self.field_names
 
 	def closingprice(self):
 		days = Days(self.sqlite)
@@ -42,16 +46,13 @@ class Calc:
 
 		self.sqlite.insert_major_coin_prices(recent_prices)
 
-		str_startday = datetostr(days.startday)
-		str_endday = datetostr(days.endday)
-
 		(
             min_btc, max_btc, avg_btc,
             min_eth, max_eth, avg_eth,
             min_xrp, max_xrp, avg_xrp,
-            ) = self.sqlite.select_major_coins_min_max_avg(str_startday, str_endday)
+            ) = self.sqlite.select_major_coins_min_max_avg(days.startday, days.endday)
 		
-		csvlist = self.sqlite.select_major_coins_prices(str_startday, str_endday)
+		csvlist = self.sqlite.select_major_coins_prices(days.startday, days.endday)
 
 		for price in csvlist:
 			price[1] = add_comma(price[1])
@@ -76,10 +77,13 @@ class Calc:
 		str_min = "최저가"
 		str_max = "최고가"
 
+		str_startday = datetostr(days.startday)
+		str_endday = datetostr(days.endday)
+
 		handlecsv.write(csvlist, f"{str_startday}-{str_endday}.csv")
 		sum_of_days = (days.endday - days.startday).days + 1
 
-		field_names = [
+		self.field_names = [
 			str_type, 
 			str_from, str_to, str_days, 
 			str_min, str_max, str_avg, 
@@ -100,16 +104,16 @@ class Calc:
 			add_comma(min_xrp), add_comma(max_xrp), add_comma(avg_xrp),
 		]
 
-		firstday = datetostr(self.days.endday + oneday)
-		lastday = datetostr(self.days.yesterday)
-		recent = self.sqlite.select_major_coins_prices(firstday, lastday)
+		firstday = days.endday + oneday
+		yesterday = days.yesterday
+		recent = self.sqlite.select_major_coins_prices(firstday, yesterday)
 
 		# csv 파일에 저장되지 않은 최근 값 화면 출력
 		for price in recent:
 			print(price)
 		
 		table = PrettyTable()
-		table.field_names = field_names
+		table.field_names = self.field_names
 		table.add_rows([row_btc, row_eth, row_xrp])
 		table.align[str_avg] = "r"
 		table.align[str_min] = "r"
