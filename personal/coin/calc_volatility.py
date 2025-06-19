@@ -155,7 +155,7 @@ def count_price_changes(start_date="2021-01-01", end_date="2025-06-18",/):
     }
 
 def get_the_day_one_year_before(theday):
-    return (theday - timedelta(days=365)).strftime("%Y-%m-%d")
+    return (theday - timedelta(days=364)).strftime("%Y-%m-%d")
 
 def main():
     days = 3
@@ -185,6 +185,7 @@ def main():
         print(f"\t총 {len(results)}개의 시작 날짜 처리됨")
 
     start_date = get_data_start_date()
+    end_date = yesterday.strftime("%Y-%m-%d")
     # 일별 변동율 계산
     daily_results = calc_daily_volatility(start_date, end_date)
     print(f"{start_date} ~ {end_date}, 일별 변동율")
@@ -232,6 +233,14 @@ def main():
 
     # 종가 변화 일수 계산
     start_date = get_data_start_date()
+    changes = count_price_changes(start_date, end_date)
+    print(f"{start_date} ~ {end_date}, 종가 기준 전날 대비")
+    print(f"\t상승한 날: {changes['up_days']}일")
+    print(f"\t하락한 날: {changes['down_days']}일")
+    print(f"\t변동 없는 날: {changes['no_change_days']}일")
+    print(f"\t총 비교 날짜: {changes['total_days']}일 (첫 날 제외)")
+
+    start_date = get_the_day_one_year_before(yesterday)
     changes = count_price_changes(start_date, end_date)
     print(f"{start_date} ~ {end_date}, 종가 기준 전날 대비")
     print(f"\t상승한 날: {changes['up_days']}일")
