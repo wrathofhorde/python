@@ -1,4 +1,6 @@
 import sqlite3
+import numpy as np
+import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
 def get_data_start_date():
@@ -157,6 +159,9 @@ def count_price_changes(start_date="2021-01-01", end_date="2025-06-18",/):
 def get_the_day_one_year_before(theday):
     return (theday - timedelta(days=364)).strftime("%Y-%m-%d")
 
+def get_the_day_half_year_before(theday):
+    return (theday - timedelta(weeks=26)).strftime("%Y-%m-%d")
+
 def main():
     days = 3
     start_date = get_data_start_date()
@@ -174,7 +179,7 @@ def main():
         print(f"\t총 {len(results)}개의 시작 날짜 처리됨")
 
     days = 3
-    start_date = get_the_day_one_year_before(yesterday)
+    start_date = get_the_day_half_year_before(yesterday)
     results = calc_volatility(start_date, end_date, days)
     print(f"{start_date} ~ {end_date}, {days}일 간 변동율")
     # for date, volatility in results[:5]:
@@ -196,7 +201,7 @@ def main():
         print(f"\t평균 일별 변동율: {avg_daily_volatility:.2f}%")
         print(f"\t총 {len(daily_results)}개의 날짜 처리됨")
 
-    start_date = get_the_day_one_year_before(yesterday)
+    start_date = get_the_day_half_year_before(yesterday)
     daily_results = calc_daily_volatility(start_date, end_date)
     print(f"{start_date} ~ {end_date}, 일별 변동율")
     # for date, volatility in daily_results[:5]:
@@ -247,6 +252,46 @@ def main():
     print(f"\t하락한 날: {changes['down_days']}일")
     print(f"\t변동 없는 날: {changes['no_change_days']}일")
     print(f"\t총 비교 날짜: {changes['total_days']}일 (첫 날 제외)")
+
+
+    start_date_half_year = get_the_day_half_year_before(yesterday)
+    open_results_half_year = calc_open_to_high_low_volatility(start_date_half_year, end_date)
+    print(f"{start_date_half_year} ~ {end_date}, 시초가 대비 최고가/최저가 변동율 (6개월)")
+
+    if open_results_half_year:
+        dates = [item[0] for item in open_results_half_year]
+        high_vols = [item[1] for item in open_results_half_year]
+        low_vols = [item[2] for item in open_results_half_year]
+
+        x = np.arange(len(dates))
+
+        plt.figure(figsize=(15, 6)) # 차트 크기를 (15, 6)으로 변경
+        plt.bar(x - 0.2, high_vols, width=0.4, label='High Price Volatility', color='red', align='center') # 레이블 변경
+        plt.bar(x + 0.2, low_vols, width=0.4, label='Low Price Volatility', color='blue', align='center') # 레이블 변경
+
+        plt.axhline(0, color='black', linewidth=0.8)
+
+        # x축 월 단위 표시
+        month_labels = [datetime.strptime(d, "%Y-%m-%d").strftime("%Y-%m") for d in dates]
+        unique_months_indices = []
+        last_month = None
+        for i, month in enumerate(month_labels):
+            if month != last_month:
+                unique_months_indices.append(i)
+                last_month = month
+
+        plt.xticks([x[i] for i in unique_months_indices], [month_labels[i] for i in unique_months_indices], rotation=45, ha='right')
+        plt.tick_params(axis='x', which='major', length=5) # 월 표시 눈금 길이
+
+        plt.xlabel('Date') # '날짜' -> 'Date'
+        plt.ylabel('Volatility (%)') # '변동율 (%)' -> 'Volatility (%)'
+        plt.title(f'{start_date_half_year} ~ {end_date} Open vs High/Low Volatility') # 제목 변경
+        plt.legend()
+        plt.grid(True, linestyle='--', alpha=0.6)
+        plt.tight_layout()
+        plt.show() # 차트를 창으로 보여주기
+        # plt.savefig('open_to_high_low_volatility_6_months.png') # 파일 저장 주석 처리
+        # plt.close() # 창을 닫지 않도록 주석 처리
 
 if __name__ == "__main__":
     main()
