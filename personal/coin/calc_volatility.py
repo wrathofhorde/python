@@ -255,6 +255,8 @@ def main():
 
 
     start_date_half_year = get_the_day_half_year_before(yesterday)
+    # start_date_half_year = get_the_day_one_year_before(yesterday)
+    # start_date_half_year = get_data_start_date()
     open_results_half_year = calc_open_to_high_low_volatility(start_date_half_year, end_date)
     print(f"{start_date_half_year} ~ {end_date}, 시초가 대비 최고가/최저가 변동율 (6개월)")
 
