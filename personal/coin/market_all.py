@@ -12,7 +12,7 @@ def get_market_all():
     data = response.json()            # JSON 응답을 파싱해서 dict로 반환
     # 딕셔너리 구조 확인
     ic(data[0])
-
+    # ic| data[0]: {'english_name': 'Bitcoin', 'korean_name': '비트코인', 'market': 'KRW-BTC'}
 
 if __name__ == "__main__":
     get_market_all()
