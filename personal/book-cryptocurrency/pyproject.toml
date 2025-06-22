@@ -1,0 +1,13 @@
+[project]
+name = "book-cryptocurrency"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bs4>=0.0.2",
+    "html5lib>=1.1",
+    "icecream>=2.1.4",
+    "pykorbit>=0.2.2",
+    "pyqt5>=5.15.11",
+]
