@@ -10,4 +10,5 @@ dependencies = [
     "icecream>=2.1.4",
     "pykorbit>=0.2.2",
     "pyqt5>=5.15.11",
+    "pyqt5-qt5==5.15.2",
 ]
