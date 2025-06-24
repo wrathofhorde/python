@@ -9,7 +9,8 @@ def main():
     db_manager.create_daily_prices_table_if_not_exists()
 
     print("KOSPI200 종목 리스트 크롤링 시작...")
-    crawled_kospi200_list = crawler.get_kospi200_stocks_with_paging(delay_seconds=0.3) 
+    stock_crawl_delay = 1.3
+    crawled_kospi200_list = crawler.get_kospi200_stocks_with_paging(delay_seconds=stock_crawl_delay) 
 
     if not crawled_kospi200_list:
         print("크롤링된 KOSPI200 종목이 없습니다. 일별 시세 수집을 진행하지 않습니다.")
@@ -26,7 +27,7 @@ def main():
     print(f"\n총 {len(active_stocks_for_daily_crawl)}개 활성 종목에 대해 일별 시세 수집을 시작합니다.")
 
     days_to_collect_for_new_stock = 120 # 신규 종목일 경우 수집할 과거 일수
-    daily_price_crawl_delay = 0.2 
+    daily_price_crawl_delay = 0.7
 
     for i, (stock_code, stock_name) in enumerate(active_stocks_for_daily_crawl.items()):
         print(f"\n--- [{i+1}/{len(active_stocks_for_daily_crawl)}] 종목: {stock_name} ({stock_code}) 일별 시세 처리 시작 ---")
@@ -50,7 +51,7 @@ def main():
         
         # 각 종목 크롤링 후 추가적인 전체 딜레이
         if i < len(active_stocks_for_daily_crawl) - 1 : # 마지막 종목이 아니면 대기
-            inter_stock_delay = 0.5
+            inter_stock_delay = 1.2
             print(f"정보: 다음 종목 처리 전 {inter_stock_delay}초 대기...")
             time.sleep(inter_stock_delay) 
 
