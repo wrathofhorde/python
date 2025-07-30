@@ -32,7 +32,8 @@ def main():
     prices = [item["value"] for item in portfolio]
     
     # 리밸런싱 실행
-    print(f"입력 금액: {total_amount}원")
+    total_amount += current_total_value
+    print(f"총투자금액: {total_amount}원")
     adjustments = rebalance_portfolio(current_weights, target_weights, total_amount, prices, assets)
     
     # 결과 저장

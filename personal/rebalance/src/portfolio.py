@@ -21,7 +21,7 @@ def rebalance_portfolio(weights: np.ndarray, target_weights: np.ndarray, total_v
     
     adjustments = target_weights - weights
     results = []
-    
+
     for i, (asset, adjustment, price) in enumerate(zip(assets, adjustments, prices)):
         # 조정 금액 = 비중 차이 * 총 가치
         adjustment_value = adjustment * total_value
@@ -35,5 +35,5 @@ def rebalance_portfolio(weights: np.ndarray, target_weights: np.ndarray, total_v
             "adjustment_value": adjustment_value
         })
         print(f"{asset}: {action} {abs(quantity)}주 (조정 금액: {adjustment_value:.2f}원)")
-    
+
     return results
