@@ -8,12 +8,11 @@ from src.json_handler import *
 
 
 def main():
-    input_file: str = "owns.json"
-    output_file: str = "rebal.json"
-    input_path = Path(input_file)
+    args = parse_arguments()
+    total_amount = args.amount
+    input_path = Path(args.file)
+    output_file: str = f"rebal_{args.file}"
     output_path = Path(output_file)
-
-    total_amount = parse_arguments()
     portfolio_data = read_json_file(input_path)
     portfolio = portfolio_data["portfolio"]
     
