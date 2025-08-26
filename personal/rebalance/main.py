@@ -6,6 +6,7 @@ from src.args import *
 from src.portfolio import *
 from src.json_handler import *
 
+ic.disable()
 
 def main():
     args = parse_arguments()
@@ -15,11 +16,15 @@ def main():
     output_path = Path(output_file)
     portfolio_data = read_json_file(input_path)
     portfolio = portfolio_data["portfolio"]
+    ic(portfolio)
     
     # 현재 비중 계산: (value * quantity) / 총 가치
     values = [item["value"] * item["quantity"] for item in portfolio]
     current_total_value = sum(values)
-    current_weights = np.array([value / current_total_value for value in values])
+    current_weights = [value / current_total_value for value in values]
+    ic(current_total_value)
+    ic(current_weights)
+    print(f"현재 투자금액: {current_total_value}원")
     
     # 목표 비중 계산: ratio / 총 ratio
     ratios = [item["ratio"] for item in portfolio]
@@ -29,15 +34,18 @@ def main():
     # 자산 정보
     assets = [item["asset"] for item in portfolio]
     prices = [item["value"] for item in portfolio]
+    quantities = [item["quantity"] for item in portfolio]
     
     # 리밸런싱 실행
     total_amount += current_total_value
     print(f"총투자금액: {total_amount}원")
-    adjustments = rebalance_portfolio(current_weights, target_weights, total_amount, prices, assets)
+    adjustments = rebalance(total_amount, target_weights, assets, prices, quantities)
     
     # 결과 저장
-    portfolio_data["adjustments"] = adjustments
-    write_json_file(output_path, portfolio_data)
+    results = {
+        "rebalance": adjustments
+    }
+    write_json_file(output_path, results)
     print(f"조정 결과가 {output_file}에 저장되었습니다.")
 
 

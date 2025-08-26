@@ -1,39 +1,31 @@
 import numpy as np
+from icecream import ic
 
-
-def rebalance_portfolio(weights: np.ndarray, target_weights: np.ndarray, total_value: int, 
-    prices: list, assets: list) -> list:
-    """
-    포트폴리오 비중 조절을 계산하여 매수/매도 수량을 반환합니다.
-    
-    Args:
-        weights (np.ndarray): 현재 자산 비중
-        target_weights (np.ndarray): 목표 자산 비중
-        total_value (float): 포트폴리오 총 가치
-        prices (list): 각 자산의 단위 가격
-        assets (list): 자산 이름 목록
-        
-    Returns:
-        list: 각 자산의 매수/매도 수량 및 액션
-    """
-    print("현재 비중:", [f"{w:.2f}" for w in weights])
-    print("목표 비중:", [f"{tw:.2f}" for tw in target_weights])
-    
-    adjustments = target_weights - weights
+def rebalance(total_value: int, target_weights: list, assets: list, prices: list, quantities: list):
     results = []
+    buy = []
 
-    for i, (asset, adjustment, price) in enumerate(zip(assets, adjustments, prices)):
-        # 조정 금액 = 비중 차이 * 총 가치
-        adjustment_value = adjustment * total_value
-        # 수량 = 조정 금액 / 자산 가격 (정수로 반올림)
-        quantity = round(adjustment_value / price)
-        action = "매수" if quantity > 0 else "매도" if quantity < 0 else "유지"
+    for i, (asset, price, quantity, target_weight) in enumerate(zip(assets, prices, quantities, target_weights)):
+        adjustment_value = int(target_weight * total_value)
+        target_quantity = int(adjustment_value / price)
+        adjustment_quantity = target_quantity - quantity
+        action = "매수" if adjustment_quantity > 0 else "매도"
+        buy.append(target_quantity * price)
         results.append({
-            "asset": asset,
-            "action": action,
-            "quantity": abs(quantity),
-            "adjustment_value": adjustment_value
+            "종목": asset,
+            "목표수량": target_quantity,
+            "매수/매도": action,
+            "추가수량": adjustment_quantity,
+            "조정후매수금액": target_quantity * price
         })
-        print(f"{asset}: {action} {abs(quantity)}주 (조정 금액: {adjustment_value:.2f}원)")
+
+    total_buy = sum(buy)
+    results.append({
+        "매수금액": total_buy,
+        "현금": total_value - total_buy
+    })
+
+    ic(results)
 
     return results
+    
