@@ -15,7 +15,7 @@ def main():
     output_path = Path(output_file)
 
     total_amount = parse_arguments()
-    portfolio_data = read_json_file(input_path)
+    portfolio_data = read_json_file(str(input_path))
     portfolio = portfolio_data["portfolio"]
     ic(portfolio)
     
@@ -40,13 +40,13 @@ def main():
     # 리밸런싱 실행
     total_amount += current_total_value
     print(f"총투자금액: {total_amount}원")
-    adjustments = rebalance(total_amount, target_weights, assets, prices, quantities)
+    adjustments = rebalance(total_amount, list(target_weights), assets, prices, quantities)
     
     # 결과 저장
     results = {
         "rebalance": adjustments
     }
-    write_json_file(output_path, results)
+    write_json_file(str(output_path), results)
     print(f"조정 결과가 {output_file}에 저장되었습니다.")
 
 
