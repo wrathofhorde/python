@@ -1,0 +1,14 @@
+{
+  "sites": [
+    {
+      "name": "xrpscan",
+      "url": "https://xrpscan.com/"
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "Kucoin",
+      "input": "KuC"
+    }
+  ]
+}

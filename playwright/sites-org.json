@@ -1,0 +1,89 @@
+{
+  "sites": [
+    {
+      "name": "xrpscan",
+      "url": "https://xrpscan.com/"
+    },
+    {
+      "name": "etherscan",
+      "url": "https://etherscan.io/"
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "Kucoin"
+    },
+    {
+      "name": "MEXC"
+    },
+    {
+      "name": "Phemex"
+    },
+    {
+      "name": "XT.com"
+    },
+    {
+      "name": "Bitrue"
+    },
+    {
+      "name": "ZB.com"
+    },
+    {
+      "name": "Bitglobal"
+    },
+    {
+      "name": "CoinW"
+    },
+    {
+      "name": "CoinEX"
+    },
+    {
+      "name": "AAX"
+    },
+    {
+      "name": "ZoomEX"
+    },
+    {
+      "name": "Poloniex"
+    },
+    {
+      "name": "BTCEX"
+    },
+    {
+      "name": "BTCC"
+    },
+    {
+      "name": "DigiFinex"
+    },
+    {
+      "name": "Pionex"
+    },
+    {
+      "name": "APPLE BIT"
+    },
+    {
+      "name": "Blofin"
+    },
+    {
+      "name": "Apex Pro"
+    },
+    {
+      "name": "CoinCatch"
+    },
+    {
+      "name": "DOEX"
+    },
+    {
+      "name": "WEEX"
+    },
+    {
+      "name": "BitMart"
+    },
+    {
+      "name": "KCEX"
+    },
+    {
+      "name": "QXALX"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import argparse
 
 
-def parse_arguments() -> int:
+def parse_arguments() -> dict:
     """
     명령줄에서 금액 아규먼트를 파싱합니다.
     
@@ -13,9 +13,13 @@ def parse_arguments() -> int:
     """
     parser = argparse.ArgumentParser(description="포트폴리오 비중 조절을 위한 매수/매도 수량 계산")
     parser.add_argument("--amount", type=int, required=True, help="총 투자 금액 (원)")
+    parser.add_argument("--file", required=True, help="포트폴리오 구성 json 파일명")
     args = parser.parse_args()
-    
+
     if args.amount < 0:
         raise ValueError("금액은 양수여야 합니다.")
     
-    return args.amount
+    if len(args.file) < 5:
+        raise ValueError("파일 이름이 잘못되었습니다.")
+    
+    return vars(args)

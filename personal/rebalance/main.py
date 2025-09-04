@@ -9,12 +9,15 @@ from src.json_handler import *
 ic.disable()
 
 def main():
-    input_file: str = "owns.json"
-    output_file: str = "rebal.json"
+
+    args = parse_arguments()
+    total_amount = args['amount']
+
+    input_file: str = args['file']
+    output_file: str = f"{input_file}_out.json"
     input_path = Path(input_file)
     output_path = Path(output_file)
-
-    total_amount = parse_arguments()
+    
     portfolio_data = read_json_file(str(input_path))
     portfolio = portfolio_data["portfolio"]
     ic(portfolio)
@@ -53,5 +56,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+    except Exception as e:
         print(f"오류 발생: {e}")
