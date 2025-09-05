@@ -8,7 +8,8 @@
   "exchanges": [
     {
       "name": "Kucoin",
-      "input": "KuC"
+      "url": "kucoin.com",
+      "input": "KuCoin"
     }
   ]
 }
