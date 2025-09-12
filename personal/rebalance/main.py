@@ -9,12 +9,25 @@ from src.json_handler import *
 ic.disable()
 
 def main():
+<<<<<<< HEAD
     args = parse_arguments()
     total_amount = args.amount
     input_path = Path(args.file)
     output_file: str = f"rebal_{args.file}"
     output_path = Path(output_file)
     portfolio_data = read_json_file(input_path)
+=======
+
+    args = parse_arguments()
+    total_amount = args['amount']
+
+    input_file: str = args['file']
+    output_file: str = f"{input_file}_out.json"
+    input_path = Path(input_file)
+    output_path = Path(output_file)
+    
+    portfolio_data = read_json_file(str(input_path))
+>>>>>>> 018a7ae2f2f378fb4ba5a056cf3451f6676604f4
     portfolio = portfolio_data["portfolio"]
     ic(portfolio)
     
@@ -39,18 +52,18 @@ def main():
     # 리밸런싱 실행
     total_amount += current_total_value
     print(f"총투자금액: {total_amount}원")
-    adjustments = rebalance(total_amount, target_weights, assets, prices, quantities)
+    adjustments = rebalance(total_amount, list(target_weights), assets, prices, quantities)
     
     # 결과 저장
     results = {
         "rebalance": adjustments
     }
-    write_json_file(output_path, results)
+    write_json_file(str(output_path), results)
     print(f"조정 결과가 {output_file}에 저장되었습니다.")
 
 
 if __name__ == "__main__":
     try:
         main()
-    except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+    except Exception as e:
         print(f"오류 발생: {e}")
