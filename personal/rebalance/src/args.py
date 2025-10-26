@@ -24,8 +24,8 @@ def parse_arguments() -> dict:
 >>>>>>> 018a7ae2f2f378fb4ba5a056cf3451f6676604f4
     args = parser.parse_args()
 
-    if args.amount < 0:
-        raise ValueError("금액은 양수여야 합니다.")
+    # if args.amount < 0:
+    #     raise ValueError("금액은 양수여야 합니다.")
     
 <<<<<<< HEAD
     if len(args.file) == 0:
