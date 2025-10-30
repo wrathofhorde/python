@@ -9,14 +9,7 @@ from src.json_handler import *
 ic.disable()
 
 def main():
-<<<<<<< HEAD
-    args = parse_arguments()
-    total_amount = args.amount
-    input_path = Path(args.file)
-    output_file: str = f"rebal_{args.file}"
-    output_path = Path(output_file)
-    portfolio_data = read_json_file(input_path)
-=======
+
 
     args = parse_arguments()
     total_amount = args['amount']
@@ -27,7 +20,7 @@ def main():
     output_path = Path(output_file)
     
     portfolio_data = read_json_file(str(input_path))
->>>>>>> 018a7ae2f2f378fb4ba5a056cf3451f6676604f4
+
     portfolio = portfolio_data["portfolio"]
     ic(portfolio)
     

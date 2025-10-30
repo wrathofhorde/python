@@ -25,6 +25,7 @@ async def xrpscan(page, site_url, exchanges, /):
         ic(all_texts)
 
         print("\n--- 자동 완성 제안 목록 ---")
+
         for i, text in all_texts:
             print(i, text)
             await suggestions_div.press('ArrowDown')
