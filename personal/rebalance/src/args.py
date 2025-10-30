@@ -18,8 +18,8 @@ def parse_arguments() -> dict:
     parser.add_argument("--file", required=True, help="포트폴리오 구성 json 파일명")
     args = parser.parse_args()
 
-    if args.amount < 0:
-        raise ValueError("금액은 양수여야 합니다.")
+    # if args.amount < 0:
+    #     raise ValueError("금액은 양수여야 합니다.")
     
 
     if len(args.file) < 5:
