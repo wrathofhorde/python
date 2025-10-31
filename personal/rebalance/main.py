@@ -27,8 +27,8 @@ def main():
     # 현재 비중 계산: (value * quantity) / 총 가치
     values = [item["value"] * item["quantity"] for item in portfolio]
     current_total_value = sum(values)
-    current_weights = [value / current_total_value for value in values]
     ic(current_total_value)
+    current_weights = [value / current_total_value for value in values] if current_total_value != 0 else [0] * len(values)
     ic(current_weights)
     print(f"현재 투자금액: {current_total_value}원")
     
