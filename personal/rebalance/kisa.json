@@ -1,0 +1,28 @@
+{
+  "portfolio": [
+    {
+      "asset": "TIMEFOLIO 미국나스닥100액티브",
+      "value": 37635,
+      "quantity": 143,
+      "ratio": 20
+    },
+    {
+      "asset": "ACE 글로벌반도체TOP4 Plus",
+      "value": 54060,
+      "quantity": 125,
+      "ratio": 30
+    },
+    {
+      "asset": "KODEX 200TR",
+      "value": 26240,
+      "quantity": 273,
+      "ratio": 30
+    },
+    {
+      "asset": "KoAct 미국나스닥성장기업액티브",
+      "value": 16005,
+      "quantity": 0,
+      "ratio": 10
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "portfolio": [
+    {
+      "asset": "KoAct 미국나스닥성장기업액티브",
+      "value": 15485,
+      "quantity": 74,
+      "ratio": 25
+    },
+    {
+      "asset": "KODEX 금액티브",
+      "value": 15690,
+      "quantity": 123,
+      "ratio": 20
+    },
+    {
+      "asset": "KoAct 미국나스닥채권혼합50액티브",
+      "value": 11055,
+      "quantity": 252,
+      "ratio": 30
+    },
+    {
+      "asset": "TIME 미국나스닥100액티브",
+      "value": 37825,
+      "quantity": 252,
+      "ratio": 30
+    },
+    {
+      "asset": "TIME 코리아밸류업액티브",
+      "value": 19355,
+      "quantity": 123,
+      "ratio": 25
+    }
+  ]
+}
