@@ -1,0 +1,28 @@
+{
+  "portfolio": [
+    {
+      "asset": "TIMEFOLIO 미국나스닥100액티브",
+      "value": 35285,
+      "quantity": 0,
+      "ratio": 20
+    },
+    {
+      "asset": "KODEX 200TR",
+      "value": 19260,
+      "quantity": 0,
+      "ratio": 20
+    },
+    {
+      "asset": "KODEX 미국달러SOFR",
+      "value": 12320,
+      "quantity": 0,
+      "ratio": 20
+    },
+    {
+      "asset": "KODEX 금액티브",
+      "value": 12310,
+      "quantity": 0,
+      "ratio": 40
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "portfolio": [
+    {
+      "asset": "ACE 미국나스닥100",
+      "value": 24915,
+      "quantity": 18,
+      "ratio": 20
+    },
+    {
+      "asset": "KODEX 200TR",
+      "value": 15410,
+      "quantity": 29,
+      "ratio": 20
+    },
+    {
+      "asset": "ACE 국고채10년",
+      "value": 91415,
+      "quantity": 2,
+      "ratio": 10
+    },
+    {
+      "asset": "ACE 미국10년액티브",
+      "value": 10140,
+      "quantity": 22,
+      "ratio": 10
+    },
+    {
+      "asset": "KODEX iShares미국하이일드액티브",
+      "value": 11190,
+      "quantity": 20,
+      "ratio": 10
+    },
+    {
+      "asset": "KODEX 금액티브",
+      "value": 10430,
+      "quantity": 65,
+      "ratio": 30
+    }
+  ]
+}
