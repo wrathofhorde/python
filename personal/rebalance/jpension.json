@@ -4,13 +4,13 @@
       "asset": "KODEX 금액티브",
       "value": 14865,
       "quantity": 18,
-      "ratio": 40
+      "ratio": 20
     },
     {
       "asset": "1Q 은액티브",
       "value": 11030,
       "quantity": 43,
-      "ratio": 60
+      "ratio": 40
     },
     {
       "asset": "KoAct 미국나스닥성장기업액티브",
@@ -28,13 +28,13 @@
       "asset": "ACE 글로벌반도체TOP4 Plus",
       "value": 66525,
       "quantity": 5,
-      "ratio": 40
+      "ratio": 30
     },
     {
       "asset": "TIME 코리아밸류업액티브",
       "value": 26085,
       "quantity": 18,
-      "ratio": 55
+      "ratio": 45
     },
     {
       "asset": "KODEX 방산TOP10",
@@ -46,13 +46,13 @@
       "asset": "SOL 조선TOP3플러스",
       "value": 36480,
       "quantity": 3,
-      "ratio": 10
+      "ratio": 15
     },
     {
       "asset": "KODEX AI전력핵심설비",
       "value": 38410,
       "quantity": 7,
-      "ratio": 20
+      "ratio": 15
     }
   ]
 }
