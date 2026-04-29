@@ -1,22 +1,58 @@
 {
   "portfolio": [
     {
-      "asset": "TIMEFOLIO 미국나스닥100액티브",
-      "value": 37370,
-      "quantity": 118,
-      "ratio": 30
-    },
-    {
-      "asset": "KODEX 200TR",
-      "value": 21520,
-      "quantity": 222,
-      "ratio": 30
-    },
-    {
       "asset": "KODEX 금액티브",
-      "value": 12045,
-      "quantity": 334,
+      "value": 14870,
+      "quantity": 18,
+      "ratio": 20
+    },
+    {
+      "asset": "1Q 은액티브",
+      "value": 10475,
+      "quantity": 43,
+      "ratio": 40
+    },
+    {
+      "asset": "KoAct 미국나스닥성장기업액티브",
+      "value": 19845,
+      "quantity": 15,
       "ratio": 30
+    },
+    {
+      "asset": "TIME 미국나스닥100액티브",
+      "value": 44650,
+      "quantity": 6,
+      "ratio": 30
+    },
+    {
+      "asset": "ACE 글로벌반도체TOP4 Plus",
+      "value": 71170,
+      "quantity": 5,
+      "ratio": 30
+    },
+    {
+      "asset": "TIME 코리아밸류업액티브",
+      "value": 28200,
+      "quantity": 18,
+      "ratio": 45
+    },
+    {
+      "asset": "KODEX 방산TOP10",
+      "value": 14835,
+      "quantity": 15,
+      "ratio": 15
+    },
+    {
+      "asset": "SOL 조선TOP3플러스",
+      "value": 41700,
+      "quantity": 3,
+      "ratio": 15
+    },
+    {
+      "asset": "KODEX AI전력핵심설비",
+      "value": 49170,
+      "quantity": 7,
+      "ratio": 15
     }
   ]
 }
