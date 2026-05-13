@@ -2,33 +2,33 @@
   "portfolio": [
     {
       "asset": "1Q 은액티브",
-      "value": 10185,
-      "quantity": 46,
+      "value": 12235,
+      "quantity": 81,
       "ratio": 25
     },
     {
       "asset": "TIME 미국나스닥100액티브",
-      "value": 50570,
-      "quantity": 6,
+      "value": 54390,
+      "quantity": 18,
       "ratio": 25
     },
     {
       "asset": "ACE 글로벌반도체TOP4 Plus",
-      "value": 74355,
-      "quantity": 5,
+      "value": 83730,
+      "quantity": 11,
       "ratio": 25
     },
     {
       "asset": "TIME 코리아밸류업액티브",
-      "value": 31545,
-      "quantity": 19,
-      "ratio": 20
+      "value": 34155,
+      "quantity": 21,
+      "ratio": 15
     },
     {
       "asset": "KODEX AI전력핵심설비",
-      "value": 62660,
+      "value": 59530,
       "quantity": 4,
-      "ratio": 5
+      "ratio": 10
     }
   ]
 }
