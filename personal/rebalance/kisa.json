@@ -3,50 +3,33 @@
     {
       "asset": "KoAct 미국나스닥성장기업액티브",
       "value": 21580,
-      "quantity": 187,
-      "ratio": 15
+      "quantity": 341,
+      "ratio": 20
     },
     {
       "asset": "KODEX 금액티브",
       "value": 14575,
-      "quantity": 581,
+      "quantity": 505,
       "ratio": 15
-    },
-    {
-      "asset": "KODEX 방산TOP10",
-      "value": 13990,
-      "quantity": 140,
-      "ratio": 0
     },
     {
       "asset": "TIME 미국나스닥100액티브",
       "value": 50535,
-      "quantity": 111,
-      "ratio": 15
+      "quantity": 145,
+      "ratio": 20
     },
     {
       "asset": "ACE 글로벌반도체TOP4 Plus",
       "value": 79000,
-      "quantity": 119,
-      "ratio": 15
+      "quantity": 93,
+      "ratio": 20
     },
-    {
-      "asset": "KODEX AI전력핵심설비",
-      "value": 63685,
-      "quantity": 134,
-      "ratio": 15
-    },
+
     {
       "asset": "TIME 코리아밸류업액티브",
       "value": 32400,
-      "quantity": 342,
-      "ratio": 15
-    },
-    {
-      "asset": "KODEX 미국달러SOFR금리액티브(합성)",
-      "value": 12625,
       "quantity": 0,
-      "ratio": 10
+      "ratio": 25
     }
   ]
 }
